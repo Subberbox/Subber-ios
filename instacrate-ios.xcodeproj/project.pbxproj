@@ -3,25 +3,53 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		6EA46C2A1DC7EF8800F57E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C291DC7EF8800F57E8A /* AppDelegate.swift */; };
-		6EA46C2C1DC7EF8800F57E8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C2B1DC7EF8800F57E8A /* ViewController.swift */; };
-		6EA46C2F1DC7EF8800F57E8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C2D1DC7EF8800F57E8A /* Main.storyboard */; };
 		6EA46C311DC7EF8800F57E8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C301DC7EF8800F57E8A /* Assets.xcassets */; };
 		6EA46C341DC7EF8800F57E8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C321DC7EF8800F57E8A /* LaunchScreen.storyboard */; };
+		6EA46C3F1DC7F2C500F57E8A /* BoxTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C3E1DC7F2C500F57E8A /* BoxTableViewController.storyboard */; };
+		6EA46C411DC7F3B500F57E8A /* BoxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C401DC7F3B500F57E8A /* BoxTableViewController.swift */; };
+		6EA46C431DC7F3D300F57E8A /* BoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */; };
+		6EA46C501DC7F4AD00F57E8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C441DC7F4AD00F57E8A /* User.swift */; };
+		6EA46C511DC7F4AD00F57E8A /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C451DC7F4AD00F57E8A /* Vendor.swift */; };
+		6EA46C521DC7F4AD00F57E8A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C461DC7F4AD00F57E8A /* Subscription.swift */; };
+		6EA46C531DC7F4AD00F57E8A /* Shipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C471DC7F4AD00F57E8A /* Shipping.swift */; };
+		6EA46C541DC7F4AD00F57E8A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C481DC7F4AD00F57E8A /* Session.swift */; };
+		6EA46C551DC7F4AD00F57E8A /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C491DC7F4AD00F57E8A /* Review.swift */; };
+		6EA46C561DC7F4AD00F57E8A /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C4A1DC7F4AD00F57E8A /* Picture.swift */; };
+		6EA46C571DC7F4AD00F57E8A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C4B1DC7F4AD00F57E8A /* Order.swift */; };
+		6EA46C581DC7F4AD00F57E8A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C4C1DC7F4AD00F57E8A /* Category.swift */; };
+		6EA46C591DC7F4AD00F57E8A /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C4D1DC7F4AD00F57E8A /* Box.swift */; };
+		6EA46C5B1DC7F4AD00F57E8A /* FeaturedBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C4F1DC7F4AD00F57E8A /* FeaturedBox.swift */; };
+		88E80931A1A83E1C22D8C8A7 /* Pods_instacrate_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1F0ED32E4FAE2848D65799 /* Pods_instacrate_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EC54C53D707E5ABCC4AC721 /* Pods-instacrate-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instacrate-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instacrate-ios/Pods-instacrate-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		6EA46C261DC7EF8800F57E8A /* instacrate-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "instacrate-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA46C291DC7EF8800F57E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6EA46C2B1DC7EF8800F57E8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6EA46C2E1DC7EF8800F57E8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6EA46C301DC7EF8800F57E8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EA46C331DC7EF8800F57E8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6EA46C351DC7EF8800F57E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EA46C3E1DC7F2C500F57E8A /* BoxTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BoxTableViewController.storyboard; sourceTree = "<group>"; };
+		6EA46C401DC7F3B500F57E8A /* BoxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxTableViewController.swift; sourceTree = "<group>"; };
+		6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxTableViewCell.swift; sourceTree = "<group>"; };
+		6EA46C441DC7F4AD00F57E8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6EA46C451DC7F4AD00F57E8A /* Vendor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
+		6EA46C461DC7F4AD00F57E8A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		6EA46C471DC7F4AD00F57E8A /* Shipping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shipping.swift; sourceTree = "<group>"; };
+		6EA46C481DC7F4AD00F57E8A /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		6EA46C491DC7F4AD00F57E8A /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		6EA46C4A1DC7F4AD00F57E8A /* Picture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
+		6EA46C4B1DC7F4AD00F57E8A /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		6EA46C4C1DC7F4AD00F57E8A /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		6EA46C4D1DC7F4AD00F57E8A /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		6EA46C4F1DC7F4AD00F57E8A /* FeaturedBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBox.swift; sourceTree = "<group>"; };
+		84225ED4A0FAE2F3E86E50ED /* Pods-instacrate-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instacrate-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-instacrate-ios/Pods-instacrate-ios.release.xcconfig"; sourceTree = "<group>"; };
+		9B1F0ED32E4FAE2848D65799 /* Pods_instacrate_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instacrate_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +57,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E80931A1A83E1C22D8C8A7 /* Pods_instacrate_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23761DD7BC04EF1146498B5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0EC54C53D707E5ABCC4AC721 /* Pods-instacrate-ios.debug.xcconfig */,
+				84225ED4A0FAE2F3E86E50ED /* Pods-instacrate-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6EA46C1D1DC7EF8800F57E8A = {
 			isa = PBXGroup;
 			children = (
 				6EA46C281DC7EF8800F57E8A /* instacrate-ios */,
 				6EA46C271DC7EF8800F57E8A /* Products */,
+				23761DD7BC04EF1146498B5C /* Pods */,
+				945EFC66C51C2FCC9D247CD2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +95,49 @@
 			isa = PBXGroup;
 			children = (
 				6EA46C291DC7EF8800F57E8A /* AppDelegate.swift */,
-				6EA46C2B1DC7EF8800F57E8A /* ViewController.swift */,
-				6EA46C2D1DC7EF8800F57E8A /* Main.storyboard */,
+				6EA46C5C1DC8011300F57E8A /* Model */,
+				6EA46C3B1DC7F00200F57E8A /* Supporting Files */,
+				6EA46C3E1DC7F2C500F57E8A /* BoxTableViewController.storyboard */,
+				6EA46C401DC7F3B500F57E8A /* BoxTableViewController.swift */,
+				6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */,
+			);
+			path = "instacrate-ios";
+			sourceTree = "<group>";
+		};
+		6EA46C3B1DC7F00200F57E8A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				6EA46C301DC7EF8800F57E8A /* Assets.xcassets */,
 				6EA46C321DC7EF8800F57E8A /* LaunchScreen.storyboard */,
 				6EA46C351DC7EF8800F57E8A /* Info.plist */,
 			);
-			path = "instacrate-ios";
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6EA46C5C1DC8011300F57E8A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6EA46C441DC7F4AD00F57E8A /* User.swift */,
+				6EA46C451DC7F4AD00F57E8A /* Vendor.swift */,
+				6EA46C461DC7F4AD00F57E8A /* Subscription.swift */,
+				6EA46C471DC7F4AD00F57E8A /* Shipping.swift */,
+				6EA46C481DC7F4AD00F57E8A /* Session.swift */,
+				6EA46C491DC7F4AD00F57E8A /* Review.swift */,
+				6EA46C4A1DC7F4AD00F57E8A /* Picture.swift */,
+				6EA46C4B1DC7F4AD00F57E8A /* Order.swift */,
+				6EA46C4C1DC7F4AD00F57E8A /* Category.swift */,
+				6EA46C4D1DC7F4AD00F57E8A /* Box.swift */,
+				6EA46C4F1DC7F4AD00F57E8A /* FeaturedBox.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		945EFC66C51C2FCC9D247CD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B1F0ED32E4FAE2848D65799 /* Pods_instacrate_ios.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +147,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6EA46C381DC7EF8800F57E8A /* Build configuration list for PBXNativeTarget "instacrate-ios" */;
 			buildPhases = (
+				D916EC48D9809918D8E45CFC /* [CP] Check Pods Manifest.lock */,
 				6EA46C221DC7EF8800F57E8A /* Sources */,
 				6EA46C231DC7EF8800F57E8A /* Frameworks */,
 				6EA46C241DC7EF8800F57E8A /* Resources */,
+				E56A94D8EC7B1DBBF0623721 /* [CP] Embed Pods Frameworks */,
+				D49FAA770EF8AAAE6A41AFB7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -101,7 +180,7 @@
 				};
 			};
 			buildConfigurationList = 6EA46C211DC7EF8800F57E8A /* Build configuration list for PBXProject "instacrate-ios" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -125,33 +204,85 @@
 			files = (
 				6EA46C341DC7EF8800F57E8A /* LaunchScreen.storyboard in Resources */,
 				6EA46C311DC7EF8800F57E8A /* Assets.xcassets in Resources */,
-				6EA46C2F1DC7EF8800F57E8A /* Main.storyboard in Resources */,
+				6EA46C3F1DC7F2C500F57E8A /* BoxTableViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D49FAA770EF8AAAE6A41AFB7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-instacrate-ios/Pods-instacrate-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D916EC48D9809918D8E45CFC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E56A94D8EC7B1DBBF0623721 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-instacrate-ios/Pods-instacrate-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6EA46C221DC7EF8800F57E8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EA46C2C1DC7EF8800F57E8A /* ViewController.swift in Sources */,
+				6EA46C521DC7F4AD00F57E8A /* Subscription.swift in Sources */,
+				6EA46C5B1DC7F4AD00F57E8A /* FeaturedBox.swift in Sources */,
+				6EA46C501DC7F4AD00F57E8A /* User.swift in Sources */,
+				6EA46C551DC7F4AD00F57E8A /* Review.swift in Sources */,
 				6EA46C2A1DC7EF8800F57E8A /* AppDelegate.swift in Sources */,
+				6EA46C571DC7F4AD00F57E8A /* Order.swift in Sources */,
+				6EA46C511DC7F4AD00F57E8A /* Vendor.swift in Sources */,
+				6EA46C591DC7F4AD00F57E8A /* Box.swift in Sources */,
+				6EA46C541DC7F4AD00F57E8A /* Session.swift in Sources */,
+				6EA46C561DC7F4AD00F57E8A /* Picture.swift in Sources */,
+				6EA46C531DC7F4AD00F57E8A /* Shipping.swift in Sources */,
+				6EA46C411DC7F3B500F57E8A /* BoxTableViewController.swift in Sources */,
+				6EA46C431DC7F3D300F57E8A /* BoxTableViewCell.swift in Sources */,
+				6EA46C581DC7F4AD00F57E8A /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6EA46C2D1DC7EF8800F57E8A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6EA46C2E1DC7EF8800F57E8A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6EA46C321DC7EF8800F57E8A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -258,6 +389,7 @@
 		};
 		6EA46C391DC7EF8800F57E8A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EC54C53D707E5ABCC4AC721 /* Pods-instacrate-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "instacrate-ios/Info.plist";
@@ -270,6 +402,7 @@
 		};
 		6EA46C3A1DC7EF8800F57E8A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84225ED4A0FAE2F3E86E50ED /* Pods-instacrate-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "instacrate-ios/Info.plist";
@@ -299,6 +432,7 @@
 				6EA46C3A1DC7EF8800F57E8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

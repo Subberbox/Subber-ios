@@ -1,0 +1,20 @@
+PODS:
+  - Gloss (1.1.0)
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
+
+DEPENDENCIES:
+  - Gloss (~> 1.1)
+  - RealmSwift (~> 2.0)
+
+SPEC CHECKSUMS:
+  Gloss: a8340c124ff69c5d1c12e06c252373f4a16d2958
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
+
+PODFILE CHECKSUM: 3a473f2906a329fa01f45f9cc1622a7b380dfafa
+
+COCOAPODS: 1.1.1
