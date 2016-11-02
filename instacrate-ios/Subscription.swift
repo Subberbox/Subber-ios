@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class Subscription: Object, Decodable {
+final class Subscription: BaseObject {
     
     dynamic var id = 0
 
@@ -22,12 +22,16 @@ final class Subscription: Object, Decodable {
     
     let orders = LinkingObjects(fromType: Order.self, property: "subscription")
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
         date = ("date" <~~ json)!
         active = ("active" <~~ json)!
         box = ("box" <~~ json)!
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

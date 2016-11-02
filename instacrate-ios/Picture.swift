@@ -10,18 +10,22 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class Picture: Object, Decodable {
+final class Picture: BaseObject {
     
     dynamic var id = 0
     dynamic var url = ""
     
     dynamic var box: Box? = nil
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
         url = ("url" <~~ json)!
-        box = ("box" <~~ json)!
+        box = "box" <~~ json
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

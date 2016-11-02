@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class User: Object, Decodable {
+final class User: BaseObject {
     
     dynamic var id: Int = 0
     
@@ -22,7 +22,7 @@ final class User: Object, Decodable {
     let sessions = LinkingObjects(fromType: Session.self, property: "user")
     let addresses = LinkingObjects(fromType: Shipping.self, property: "user")
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
@@ -30,5 +30,9 @@ final class User: Object, Decodable {
         name = ("name" <~~ json)!
         
         stripe_id = "stripe_id" <~~ json
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

@@ -12,7 +12,7 @@
         <!--Root View Controller-->
         <scene sceneID="haX-9e-YXM">
             <objects>
-                <tableViewController id="5Dn-H0-XsD" sceneMemberID="viewController">
+                <tableViewController id="5Dn-H0-XsD" customClass="BoxTableViewController" customModule="instacrate_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="81B-Ou-s1G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,6 +55,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="boxDescriptionLabel" destination="3Tg-hq-hJ9" id="wBU-hk-0Tp"/>
+                                    <outlet property="boxImageView" destination="MaF-ws-7jf" id="5jT-ah-XjW"/>
                                     <outlet property="boxNameLabel" destination="Bph-qj-anF" id="mAY-VS-QRZ"/>
                                 </connections>
                             </tableViewCell>

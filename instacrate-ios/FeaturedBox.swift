@@ -10,15 +10,19 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class FeaturedBox: Object, Decodable {
+final class FeaturedBox: BaseObject {
     
     dynamic var id = 0
     dynamic var box: Box? = nil
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
         box = ("box" <~~ json)!
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

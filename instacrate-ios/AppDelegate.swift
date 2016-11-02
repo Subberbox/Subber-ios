@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import Nuke
+import NukeAlamofirePlugin
+
+let loader = Nuke.Loader(loader: NukeAlamofirePlugin.DataLoader(), decoder: Nuke.DataDecoder(), cache: Cache.shared)
+let image = Nuke.Manager(loader: loader, cache: Cache.shared)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

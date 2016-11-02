@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class Session: Object, Decodable {
+final class Session: BaseObject {
     
     dynamic var id = 0
     dynamic var exists = false
@@ -19,11 +19,15 @@ final class Session: Object, Decodable {
     
     dynamic var user: User? = nil
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
         accessToken = ("accessToken" <~~ json)!
         user = ("user" <~~ json)!
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

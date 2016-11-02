@@ -10,17 +10,21 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class Category: Object, Decodable {
+final class Category: BaseObject {
     
     dynamic var id = 0
     dynamic var name = ""
     
-    let boxes = LinkingObjects(fromType: Box.self, property: "category")
+    let boxes = LinkingObjects(fromType: Box.self, property: "categories")
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
         name = ("name" <~~ json)!
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

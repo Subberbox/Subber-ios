@@ -19,7 +19,7 @@ enum ApplicationState: Int {
     case accepted
 }
 
-final class Vendor: Object, Decodable {
+final class Vendor: BaseObject {
     
     dynamic var id: Int = 0
 
@@ -47,7 +47,7 @@ final class Vendor: Object, Decodable {
     
     let boxes = LinkingObjects(fromType: Box.self, property: "vendor")
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         
         self.init()
         
@@ -71,5 +71,9 @@ final class Vendor: Object, Decodable {
         
         category = ("category" <~~ json)!
         cut = ("cut" <~~ json)!
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

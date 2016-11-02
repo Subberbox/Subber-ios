@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class Shipping: Object, Decodable {
+final class Shipping: BaseObject {
     
     dynamic var id = 0
     
@@ -23,7 +23,7 @@ final class Shipping: Object, Decodable {
     
     dynamic var user: User? = nil
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
@@ -35,5 +35,9 @@ final class Shipping: Object, Decodable {
         city = ("city" <~~ json)!
         state = ("state" <~~ json)!
         zip = ("zip" <~~ json)!
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

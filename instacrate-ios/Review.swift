@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class Review: Object, Decodable {
+final class Review: BaseObject {
     
     dynamic var id = 0
     
@@ -21,14 +21,19 @@ final class Review: Object, Decodable {
     dynamic var box: Box? = nil
     dynamic var user: User? = nil
     
-    convenience init?(json: JSON) {
+    convenience required init?(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
         text = ("text" <~~ json)!
         rating = ("rating" <~~ json)!
-        date = ("date" <~~ json)!
-        box = ("box_id" <~~ json)!
-        user = ("user_id" <~~ json)!
+        
+        if let interval: Double = "date" <~~ json {
+            self.date = Date(timeIntervalSince1970: interval)
+        }
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

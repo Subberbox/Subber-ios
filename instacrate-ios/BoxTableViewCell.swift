@@ -13,5 +13,6 @@ class BoxTableViewCell: UITableViewCell {
     
     @IBOutlet weak var boxNameLabel: UILabel!
     @IBOutlet weak var boxDescriptionLabel: UILabel!
+    @IBOutlet weak var boxImageView: UIImageView!
     
 }

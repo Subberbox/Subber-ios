@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 import RealmSwift
 
-final class Order: Object, Decodable {
+final class Order: BaseObject {
     
     dynamic var id = 0
     
@@ -20,7 +20,7 @@ final class Order: Object, Decodable {
     dynamic var subscription: Subscription? = nil
     dynamic var address: Shipping? = nil
 
-    convenience init(json: JSON) {
+    convenience required init(json: JSON) {
         self.init()
         
         id = ("id" <~~ json)!
@@ -28,5 +28,9 @@ final class Order: Object, Decodable {
         fulfilled = ("fulfilled" <~~ json)!
         subscription = ("subscription" <~~ json)!
         address = ("shipping" <~~ json)!
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }
