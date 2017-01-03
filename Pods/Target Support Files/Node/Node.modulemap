@@ -1,0 +1,6 @@
+framework module Node {
+  umbrella header "Node-umbrella.h"
+
+  export *
+  module * { export * }
+}

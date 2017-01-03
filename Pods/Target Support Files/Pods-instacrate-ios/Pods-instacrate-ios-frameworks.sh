@@ -90,22 +90,24 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Gloss/Gloss.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Moya/Moya.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Moya-Gloss/Moya_Gloss.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Node/Node.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke-Alamofire-Plugin/NukeAlamofirePlugin.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PathIndexable/PathIndexable.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Polymorphic/Polymorphic.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Gloss/Gloss.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Moya/Moya.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Moya-Gloss/Moya_Gloss.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Node/Node.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke-Alamofire-Plugin/NukeAlamofirePlugin.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PathIndexable/PathIndexable.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Polymorphic/Polymorphic.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"

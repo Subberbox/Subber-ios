@@ -1,56 +1,45 @@
 PODS:
   - Alamofire (4.0.1)
-  - Gloss (1.1.0)
   - Moya (8.0.0-beta.3):
     - Moya/Core (= 8.0.0-beta.3)
-  - Moya-Gloss (2.0.0-beta.3):
-    - Moya-Gloss/Core (= 2.0.0-beta.3)
-  - Moya-Gloss/Core (2.0.0-beta.3):
-    - Gloss (~> 1.0)
-    - Moya (~> 8.0.0-beta.2)
   - Moya/Core (8.0.0-beta.3):
     - Alamofire (~> 4.0.0)
     - Result
+  - Node (1.0.2):
+    - PathIndexable
+    - Polymorphic
   - Nuke (4.1.2)
   - Nuke-Alamofire-Plugin (1.0.1):
     - Alamofire (~> 4.0)
     - Nuke (~> 4.0)
-  - Realm (2.0.3):
-    - Realm/Headers (= 2.0.3)
-  - Realm/Headers (2.0.3)
-  - RealmSwift (2.0.3):
-    - Realm (= 2.0.3)
-  - Result (3.0.0)
+  - PathIndexable (1.0.1)
+  - Polymorphic (1.0.2)
+  - Realm (2.1.2):
+    - Realm/Headers (= 2.1.2)
+  - Realm/Headers (2.1.2)
+  - RealmSwift (2.1.2):
+    - Realm (= 2.1.2)
+  - Result (3.1.0)
 
 DEPENDENCIES:
-  - Gloss (~> 1.1)
   - Moya (= 8.0.0-beta.3)
-  - Moya-Gloss (from `https://github.com/marvin-yorke/Moya-Gloss`, commit `611eb9160fa35ea998aee82998865f36f501db9e`)
+  - Node
   - Nuke (~> 4.0)
   - Nuke-Alamofire-Plugin
   - RealmSwift (~> 2.0)
 
-EXTERNAL SOURCES:
-  Moya-Gloss:
-    :commit: 611eb9160fa35ea998aee82998865f36f501db9e
-    :git: https://github.com/marvin-yorke/Moya-Gloss
-
-CHECKOUT OPTIONS:
-  Moya-Gloss:
-    :commit: 611eb9160fa35ea998aee82998865f36f501db9e
-    :git: https://github.com/marvin-yorke/Moya-Gloss
-
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  Gloss: a8340c124ff69c5d1c12e06c252373f4a16d2958
   Moya: f83c7f81eaa28cb0151549dfcf1f3fda4440bb50
-  Moya-Gloss: a1c07d080f366e0c8904c4c1936a95a29441f60a
+  Node: 8d7feb03d43da1ce59b74b076085fbde2106d26b
   Nuke: 7cfd2acdf90c36f66e6ea40795bac0d851a9afe0
   Nuke-Alamofire-Plugin: 4832f6786825e3d0d528757828b48c82e6e85225
-  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
-  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
-  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
+  PathIndexable: 43c95e279ddb651bfe83c8a034ab1c25e21cbf9b
+  Polymorphic: 79e4b2e4e2d266a347e6d6adffeb9dc66cd2e177
+  Realm: efe855f4d977c8ce5a82d3116d9f1ff155a6550c
+  RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
+  Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
 
-PODFILE CHECKSUM: 644a6d0aa13fb0a5a9934928fac6a11391e5e6d4
+PODFILE CHECKSUM: 4e74392932a13cabdaa18bf14e44e9dfcdd50cc1
 
 COCOAPODS: 1.2.0.beta.1
