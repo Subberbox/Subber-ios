@@ -11,6 +11,7 @@ import UIKit
 import RealmSwift
 import Nuke
 import Moya
+import Jay
 
 let store = try! Realm()
 
@@ -18,6 +19,14 @@ extension Realm {
     
     var boxes: Results<Box> {
         return objects(Box.self)
+    }
+}
+
+extension Moya.Response {
+
+    func nativeMapJSON(shouldFailOnEmptyData: Bool = true, prettyPrint: Bool = false) throws -> JSON {
+        let formatting: Jay.Formatting = prettyPrint ? .prettified : .minified
+        return try Jay(formatting: formatting).jsonFromData([UInt8](data))
     }
 }
 
@@ -29,12 +38,15 @@ class BoxTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        provider.request(.all) { result in
+        provider.request(.all(format: .long)) { result in
             if case let .success(response) = result {
-                let json = try! response.mapJSON()
-                
-                try! collectResultsFrom(json: json, forEndpoint: Boxes.all.responseType).forEach {
-                    print($0)
+                let json = try! response.nativeMapJSON()
+                let objects = try! parse(json: json, from: Boxes.all(format: .long))
+
+                try! Realm().write {
+                    for object in objects {
+                        try! Realm().add(object, update: true)
+                    }
                 }
             }
         }

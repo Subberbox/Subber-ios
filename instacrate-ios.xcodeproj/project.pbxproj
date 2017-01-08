@@ -13,7 +13,7 @@
 		6EA46C3F1DC7F2C500F57E8A /* BoxTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C3E1DC7F2C500F57E8A /* BoxTableViewController.storyboard */; };
 		6EA46C411DC7F3B500F57E8A /* BoxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C401DC7F3B500F57E8A /* BoxTableViewController.swift */; };
 		6EA46C431DC7F3D300F57E8A /* BoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */; };
-		6EA46C501DC7F4AD00F57E8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C441DC7F4AD00F57E8A /* User.swift */; };
+		6EA46C501DC7F4AD00F57E8A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C441DC7F4AD00F57E8A /* Customer.swift */; };
 		6EA46C511DC7F4AD00F57E8A /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C451DC7F4AD00F57E8A /* Vendor.swift */; };
 		6EA46C521DC7F4AD00F57E8A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C461DC7F4AD00F57E8A /* Subscription.swift */; };
 		6EA46C531DC7F4AD00F57E8A /* Shipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C471DC7F4AD00F57E8A /* Shipping.swift */; };
@@ -40,7 +40,7 @@
 		6EA46C3E1DC7F2C500F57E8A /* BoxTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BoxTableViewController.storyboard; sourceTree = "<group>"; };
 		6EA46C401DC7F3B500F57E8A /* BoxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxTableViewController.swift; sourceTree = "<group>"; };
 		6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxTableViewCell.swift; sourceTree = "<group>"; };
-		6EA46C441DC7F4AD00F57E8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6EA46C441DC7F4AD00F57E8A /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		6EA46C451DC7F4AD00F57E8A /* Vendor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		6EA46C461DC7F4AD00F57E8A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		6EA46C471DC7F4AD00F57E8A /* Shipping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shipping.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		6EA46C5C1DC8011300F57E8A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6EA46C441DC7F4AD00F57E8A /* User.swift */,
+				6EA46C441DC7F4AD00F57E8A /* Customer.swift */,
 				6EA46C451DC7F4AD00F57E8A /* Vendor.swift */,
 				6EA46C461DC7F4AD00F57E8A /* Subscription.swift */,
 				6EA46C471DC7F4AD00F57E8A /* Shipping.swift */,
@@ -187,7 +187,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Instacrate;
 				TargetAttributes = {
 					6EA46C251DC7EF8800F57E8A = {
@@ -282,7 +282,7 @@
 			files = (
 				6EA46C521DC7F4AD00F57E8A /* Subscription.swift in Sources */,
 				6EA46C5B1DC7F4AD00F57E8A /* FeaturedBox.swift in Sources */,
-				6EA46C501DC7F4AD00F57E8A /* User.swift in Sources */,
+				6EA46C501DC7F4AD00F57E8A /* Customer.swift in Sources */,
 				6EA46C601DC932A600F57E8A /* ResponseParsing.swift in Sources */,
 				6EA46C551DC7F4AD00F57E8A /* Review.swift in Sources */,
 				6EA46C2A1DC7EF8800F57E8A /* AppDelegate.swift in Sources */,
@@ -332,6 +332,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -382,6 +383,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

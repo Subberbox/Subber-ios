@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Moya_Gloss
 
 import UIKit.UIImage
 

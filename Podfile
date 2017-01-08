@@ -5,6 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'instacrate-ios' do
 	pod 'Node'
+    pod 'Jay'
 
     pod 'RealmSwift', '~> 2.0'
     

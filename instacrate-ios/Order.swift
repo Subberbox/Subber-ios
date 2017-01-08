@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Gloss
+import Node
 import RealmSwift
 
 final class Order: BaseObject {
@@ -19,15 +19,51 @@ final class Order: BaseObject {
     
     dynamic var subscription: Subscription? = nil
     dynamic var address: Shipping? = nil
+    dynamic var vendor: Vendor? = nil
 
-    convenience required init(json: JSON) {
+    var subscription_id: Int?
+    var shipping_id: Int?
+    var vendor_id: Int?
+
+    convenience required init(node: Node, in context: Context) throws {
         self.init()
         
-        id = ("id" <~~ json)!
-        date = ("url" <~~ json)!
-        fulfilled = ("fulfilled" <~~ json)!
-        subscription = ("subscription" <~~ json)!
-        address = ("shipping" <~~ json)!
+        id = try node.extract("id")
+
+        date = (try? node.extract("date") { (stringValue: String) in
+            try Date(ISO8601String: stringValue)
+        }) ?? Date()
+
+        fulfilled = (try? node.extract("fulfilled")) ?? false
+
+        subscription_id = try node.extract("subscription_id")
+        shipping_id = try node.extract("shipping_id")
+        vendor_id = try node.extract("vendor_id")
+    }
+
+    override func makeNode(context: Context) throws -> Node {
+        return try Node(node: [
+            "id" : .number(.int(id)),
+            "date" : .string(date.ISO8601String),
+            "fulfilled" : .bool(fulfilled),
+            "subscription_id" : .number(.int(subscription_id!)),
+            "shipping_id" : .number(.int(shipping_id!)),
+            "vendor_id" : .number(.int(vendor_id!))
+        ])
+    }
+
+    override func link() throws {
+        if let subscription_id = subscription_id {
+            subscription = try Realm().object(ofType: Subscription.self, forPrimaryKey: subscription_id)
+        }
+
+        if let shipping_id = shipping_id {
+            address = try Realm().object(ofType: Shipping.self, forPrimaryKey: shipping_id)
+        }
+
+        if let vendor_id = vendor_id {
+            vendor = try Realm().object(ofType: Vendor.self, forPrimaryKey: vendor_id)
+        }
     }
     
     override class func primaryKey() -> String? {

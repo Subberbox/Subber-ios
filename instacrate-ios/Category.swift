@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Gloss
+import Node
 import RealmSwift
 
 final class Category: BaseObject {
@@ -16,12 +16,19 @@ final class Category: BaseObject {
     dynamic var name = ""
     
     let boxes = LinkingObjects(fromType: Box.self, property: "categories")
-    
-    convenience required init?(json: JSON) {
+
+    convenience required init(node: Node, in context: Context) throws {
         self.init()
         
-        id = ("id" <~~ json)!
-        name = ("name" <~~ json)!
+        id = try node.extract("id")
+        name = try node.extract("name")
+    }
+
+    override func makeNode(context: Context) throws -> Node {
+        return try Node(node: [
+            "id" : .number(.int(id)),
+            "name" : .string(name)
+        ])
     }
     
     override class func primaryKey() -> String? {

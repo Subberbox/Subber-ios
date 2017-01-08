@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import Gloss
 import RealmSwift
+import Node
 
 @objc
 enum ApplicationState: Int {
@@ -17,6 +17,23 @@ enum ApplicationState: Int {
     case recieved
     case rejected
     case accepted
+
+    init(from string: String) throws {
+        switch string {
+        case "none":
+            self = .none
+            return
+        case "recieved":
+            self = .recieved
+        case "rejected":
+            self = .rejected
+        case "accepted":
+            self = .accepted
+            return
+        default:
+            throw GenericError()
+        }
+    }
 }
 
 final class Vendor: BaseObject {
@@ -34,43 +51,63 @@ final class Vendor: BaseObject {
     
     dynamic var parentCompanyName = ""
     dynamic var established = ""
+
+    dynamic var username = ""
     
     dynamic var category: Category? = nil
     dynamic var estimatedTotalSubscribers = 0
-    
-    dynamic var dateCreated: Date = Date()
+//    var verificationState: LegalEntityVerificationStatus?
 
-    dynamic var username = ""
-    dynamic var password = ""
+    dynamic var dateCreated: Date = Date()
     
     dynamic var cut = 0.5
+
+    var stripeAccountId: String?
     
     let boxes = LinkingObjects(fromType: Box.self, property: "vendor")
-    
-    convenience required init?(json: JSON) {
-        
-        self.init()
-        
-        id = ("id" <~~ json)!
-        
-        applicationState = "applicationState" <~~ json ?? .none
 
-        contactName = ("contactName" <~~ json)!
-        businessName = ("businessName" <~~ json)!
-        parentCompanyName = ("parentCompanyName" <~~ json)!
-        
-        contactPhone = ("contactPhone" <~~ json)!
-        contactEmail = ("contactEmail" <~~ json)!
-        supportEmail = ("supportEmail"  <~~ json)!
-        publicWebsite = ("publicWebsite" <~~ json)!
-        
-        established = ("established" <~~ json)!
-        dateCreated = Decoder.decode(dateISO8601ForKey: "dateCreated")(json)!
-        
-        estimatedTotalSubscribers = ("estimatedTotalSubscribers" <~~ json)!
-        
-        category = ("category" <~~ json)!
-        cut = ("cut" <~~ json)!
+    var category_id: Int?
+
+    convenience required init(node: Node, in context: Context) throws {
+        self.init()
+
+        id = try node.extract("id")
+
+        applicationState = (try? node.extract("applicationState") { (freq: String) in
+            return try ApplicationState.init(from: freq)
+        }) ?? .none
+
+        username = try node.extract("username")
+
+        contactName = try node.extract("contactName")
+        businessName = try node.extract("businessName")
+        parentCompanyName = try node.extract("parentCompanyName")
+
+        contactPhone = try node.extract("contactPhone")
+        contactEmail = try node.extract("contactEmail")
+        supportEmail = try node.extract("supportEmail")
+        publicWebsite = try node.extract("publicWebsite")
+
+        established = try node.extract("established")
+
+        dateCreated = (try? node.extract("dateCreated") { (dateString: String) in
+            try Date(ISO8601String: dateString)
+        }) ?? Date()
+
+        estimatedTotalSubscribers = try node.extract("estimatedTotalSubscribers")
+
+        category_id = try node.extract("category_id")
+
+        cut = (try? node.extract("cut")) ?? 0.08
+        stripeAccountId = try? node.extract("stripeAccountId")
+//        verificationState = try? node.extract("verificationState")
+    }
+
+    override func link() throws {
+
+        if let category_id = category_id {
+            category = try Realm().object(ofType: Category.self, forPrimaryKey: category_id)
+        }
     }
     
     override class func primaryKey() -> String? {

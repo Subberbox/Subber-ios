@@ -9,15 +9,19 @@
 import Foundation
 import Moya
 
+enum Format {
+
+    case short
+    case long
+}
+
 enum Boxes {
     
-    case all
-    case featured
-    case new
-    case boxes(category: Int)
-    
-    case box(id: Int)
-    case list(ids: [Int])
+    case all(format: Format)
+    case featured(format: Format)
+    case new(format: Format)
+
+    case box(format: Format, id: Int)
 }
 
 extension Boxes: ResponseTargetType {
@@ -27,16 +31,7 @@ extension Boxes: ResponseTargetType {
     }
     
     public var path: String {
-        switch self {
-        case .all: return "box/all"
-        case .featured: return "box/featured"
-        case .new: return "box/new"
-            
-        case .box(let id): return "box/\(id)"
-            
-        case .boxes(let category): return "box/category/\(category)"
-        case .list(_): return "box/"
-        }
+        return "box"
     }
     
     public var method: Moya.Method {
@@ -44,10 +39,7 @@ extension Boxes: ResponseTargetType {
     }
     
     var parameters: [String : Any]? {
-        switch self {
-        case .list(let ids): return ["id" : ids]
-        default: return nil
-        }
+        return nil
     }
     
     public var task: Task {
@@ -57,21 +49,26 @@ extension Boxes: ResponseTargetType {
     public var sampleData: Data {
         return "test".data(using: .utf8)!
     }
+
+    private var baseResponseType: ResponseType {
+        switch self {
+        case let .all(format), let .featured(format), let .new(format), let .box(format, _):
+            switch format {
+            case .short:
+                return .object(Box.self)
+            case .long:
+                return .tuple(["box" : .object(Box.self),
+                               "pictures" : .array(.object(Picture.self)),
+                               "reviews" : .array(.object(Review.self))])
+            }
+        }
+    }
     
     public var responseType: ResponseType {
-        switch self {
-        case .all: fallthrough
-        case .featured: fallthrough
-        case .new: fallthrough
-        case .boxes(_): fallthrough
-        case .list(_):
-            return .array(.tuple(["box" : .object(Box.self),
-                                  "pictures" : .array(.object(Picture.self)),
-                                  "reviews" : .array(.object(Review.self))]))
-            
-        case .box(_): return .tuple(["box" : .object(Box.self),
-                                     "pictures" : .array(.object(Picture.self)),
-                                     "reviews" : .array(.object(Review.self))])
+        if case .box = self {
+            return self.baseResponseType
+        } else {
+            return .array(self.baseResponseType)
         }
     }
 }

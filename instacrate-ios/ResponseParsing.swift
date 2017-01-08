@@ -9,13 +9,114 @@
 import Foundation
 import Moya
 import RealmSwift
-import Gloss
-import Moya_Gloss
+import Node
+import Jay
 
-class BaseObject: Object, Decodable {
-    
-    convenience required init?(json: JSON) {
-        fatalError("missing subclass implmementation")
+extension JSON {
+
+    func toNode() -> Node {
+        switch self {
+        case .array(let values):
+            return .array(values.map { $0.toNode() })
+        case .boolean(let value):
+            return .bool(value)
+        case .null:
+            return .null
+        case .number(let number):
+            let num: Node.Number
+            switch number {
+            case .double(let value):
+                num = .double(value)
+            case .integer(let value):
+                num = .int(value)
+            case .unsignedInteger(let value):
+                num = .uint(value)
+            }
+            return .number(num)
+        case .object(let values):
+            var dictionary: [String: Node] = [:]
+            for (key, value) in values {
+                dictionary[key] = value.toNode()
+            }
+            return .object(dictionary)
+        case .string(let value):
+            return .string(value)
+        }
+    }
+}
+
+internal extension Date {
+
+    init(ISO8601String: String) throws {
+        let dateFormatter = DateFormatter()
+        let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.locale = enUSPosixLocale
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+
+        guard let date = dateFormatter.date(from: ISO8601String) else {
+            throw GenericError()
+        }
+
+        self = date
+    }
+
+    var ISO8601String: String {
+        let dateFormatter = DateFormatter()
+        let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.locale = enUSPosixLocale
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+
+        return dateFormatter.string(from: self)
+    }
+}
+
+
+internal extension Node {
+
+    func add(name: String, node: Node?) throws -> Node {
+        if let node = node {
+            return try add(name: name, node: node)
+        }
+
+        return self
+    }
+
+    func add(name: String, node: Node) throws -> Node {
+        guard var object = self.nodeObject else { throw NodeError.unableToConvert(node: self, expected: "[String: Node].self") }
+        object[name] = node
+        return try Node(node: object)
+    }
+
+    func add(objects: [String : NodeConvertible?]) throws -> Node {
+        guard var nodeObject = self.nodeObject else { throw NodeError.unableToConvert(node: self, expected: "[String: Node].self") }
+
+        for (name, object) in objects {
+            if let node = try object?.makeNode() {
+                nodeObject[name] = node
+            }
+        }
+
+        return try Node(node: nodeObject)
+    }
+}
+
+protocol Linkable {
+
+    func link() throws
+}
+
+class BaseObject: Object, NodeConvertible, Linkable {
+
+    required convenience init(node: Node, in context: Context = EmptyNode) throws {
+        self.init()
+    }
+
+    func makeNode(context: Context = EmptyNode) throws -> Node {
+        return try Node(node: [])
+    }
+
+    func link() throws {
+        
     }
 }
 
@@ -32,73 +133,33 @@ indirect enum ResponseType {
     case tuple([String : ResponseType])
 }
 
-extension Response {
-    
-    public func mapObject<T: Decodable>(_ type: T.Type, forKeyPath keyPath: String? = nil) throws -> T {
-        if let key = keyPath, key != "" {
-            return try mapObject(type, forKeyPath: key)
-        } else {
-            return try mapObject(type)
-        }
-    }
-    
-    public func mapArray<T: Decodable>(_ type: T.Type, forKeyPath keyPath: String? = nil) throws -> [T] {
-        if let key = keyPath {
-            return try mapArray(type, forKeyPath: key)
-        } else {
-            return try mapArray(type)
-        }
-    }
+func parse(json: JSON, from endpoint: ResponseTargetType) throws -> [BaseObject] {
+    return try parse(node: json.toNode(), from: endpoint.responseType)
 }
 
-func collectResultsFrom(json: Any, forEndpoint endpoint: ResponseType) throws -> [Object] {
+func parse(node: Node, from endpoint: ResponseType) throws -> [BaseObject] {
     
-    var results: [Object] = []
-    
-    if case let .array(internalType) = endpoint {
-        if let json = json as? [JSON] {
-            try results.append(contentsOf: collectResultsFromArray(json: json, forEndpoint: internalType))
-            return results
-        }
-    }
+    var results: [BaseObject] = []
     
     switch endpoint {
     case let .object(type):
-        guard let json = json as? JSON else { return [] }
-        let object = type.init(json: json)
-        return object != nil ? [object!] as [Object] : []
+        try results.append(type.init(node: node))
 
     case let .tuple(internals):
-        guard let json = json as? JSON else { return [] }
+        try results.append(contentsOf: internals.flatMap { (tuple) -> [BaseObject] in
+            guard let subnode = node[tuple.key] else { throw GenericError() }
+            return try parse(node: subnode, from: tuple.value)
+        })
         
-        return try internals.flatMap { (tuple) -> [Object] in
-            guard let value = json[tuple.key] else { return [] }
-            return try collectResultsFrom(json: value, forEndpoint: tuple.value)
+    case let .array(type):
+        guard case let .array(subnodes) = node else {
+            throw GenericError()
         }
-        
-    case .array(_):
-        // Handled above
-        break
+
+        try results.append(contentsOf: subnodes.flatMap { subnode -> [BaseObject] in
+            return try parse(node: subnode, from: type)
+        })
     }
     
     return results
-}
-
-func collectResultsFromArray(json: [JSON], forEndpoint endpoint: ResponseType) throws -> [Object] {
-    
-    switch endpoint {
-    case let .object(type):
-        return json.flatMap { type.init(json: $0) } as [Object]
-        
-    case let .tuple(internalMapping):
-        return try json.flatMap { tupleJSON in
-            try internalMapping.flatMap { mapping in
-                // Crash if mapping does not exist
-                try collectResultsFrom(json: tupleJSON[mapping.key]!, forEndpoint: mapping.value)
-            }
-        }
-        
-    case .array:
-        fatalError("Not allowed")
-    }
 }

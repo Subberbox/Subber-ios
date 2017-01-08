@@ -7,10 +7,12 @@
 //
 
 import Foundation
-import Gloss
+import Node
 import RealmSwift
 
 final class Box: BaseObject {
+
+    static let boxBulletSeparator = "<<<>>>"
     
     dynamic var id = 0
 
@@ -18,35 +20,61 @@ final class Box: BaseObject {
     dynamic var brief = ""
     dynamic var long_desc = ""
     dynamic var short_desc = ""
-    dynamic var bullets: String = ""
+    dynamic var bullets: [String] = []
     dynamic var freq = ""
     dynamic var price = 0.0
     dynamic var publish_date = Date()
+    dynamic var plan_id: String?
     
     let categories = List<Category>()
-    dynamic var vendor: Vendor?
+    dynamic var vendor: Vendor? = nil
     
     let pictures = LinkingObjects(fromType: Picture.self, property: "box")
     let reviews = LinkingObjects(fromType: Review.self, property: "box")
     let subscriptions = LinkingObjects(fromType: Subscription.self, property: "box")
+
+    var vendor_id: Int?
     
-    convenience required init?(json: JSON) {
+    convenience required init(node: Node, in context: Context) throws {
         self.init()
         
-        id = ("id" <~~ json)!
-        name = ("name" <~~ json)!
-        brief = ("brief" <~~ json)!
-        long_desc = ("long_desc" <~~ json)!
-        short_desc = ("short_desc" <~~ json)!
-        
-        if let bullets: [String] = "bullets" <~~ json, let first = bullets.first {
-            self.bullets = first
+        id = try node.extract("id")
+        name = try node.extract("name")
+        brief = try node.extract("brief")
+        long_desc = try node.extract("long_desc")
+        short_desc = try node.extract("short_desc")
+
+        let string = try node.extract("bullets") as String
+        bullets = string.components(separatedBy: Box.boxBulletSeparator)
+
+        price = try node.extract("price")
+
+        publish_date = (try? node.extract("publish_date") { (value: String) in
+            try Date(ISO8601String: value)
+        }) ?? Date()
+
+        vendor_id = try node.extract("vendor_id")
+        plan_id = try? node.extract("plan_id")
+    }
+
+    override func makeNode(context: Context) throws -> Node {
+        return try Node(node: [
+            "int" : .number(.int(id)),
+            "name" : .string(name),
+            "brief" : .string(brief),
+            "long_desc" : .string(long_desc),
+            "short_desc" : .string(short_desc),
+            "bullets" : .string(bullets.joined(separator: Box.boxBulletSeparator)),
+            "price" : .number(.double(price)),
+            "vendor_id" : .number(.int(vendor_id!)),
+            "publish_date" : .string(publish_date.ISO8601String),
+        ]).add(objects: ["plan_id" : plan_id])
+    }
+
+    override func link() throws {
+        if let vendor_id = vendor_id {
+            vendor = try Realm().object(ofType: Vendor.self, forPrimaryKey: vendor_id)
         }
-        
-        freq = ("freq" <~~ json)!
-        price = ("price" <~~ json)!
-        vendor = "vendor" <~~ json
-//        publish_date = try Date(timeIntervalSince1970: TimeInterval(node.extract("publish_date") as Int))
     }
     
     override class func primaryKey() -> String? {

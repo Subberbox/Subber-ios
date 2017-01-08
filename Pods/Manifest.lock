@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
+  - Jay (1.0.1)
   - Moya (8.0.0-beta.3):
     - Moya/Core (= 8.0.0-beta.3)
   - Moya/Core (8.0.0-beta.3):
@@ -22,6 +23,7 @@ PODS:
   - Result (3.1.0)
 
 DEPENDENCIES:
+  - Jay
   - Moya (= 8.0.0-beta.3)
   - Node
   - Nuke (~> 4.0)
@@ -30,6 +32,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Jay: 40861dd00411b4d86661c811a9a9ced7fea69221
   Moya: f83c7f81eaa28cb0151549dfcf1f3fda4440bb50
   Node: 8d7feb03d43da1ce59b74b076085fbde2106d26b
   Nuke: 7cfd2acdf90c36f66e6ea40795bac0d851a9afe0
@@ -40,6 +43,6 @@ SPEC CHECKSUMS:
   RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
 
-PODFILE CHECKSUM: 4e74392932a13cabdaa18bf14e44e9dfcdd50cc1
+PODFILE CHECKSUM: 83c0b0128c1958ef66e003519734cd6ea143430c
 
 COCOAPODS: 1.2.0.beta.1

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Gloss
+import Node
 import RealmSwift
 
 final class Review: BaseObject {
@@ -19,17 +19,34 @@ final class Review: BaseObject {
     dynamic var date = Date()
     
     dynamic var box: Box? = nil
-    dynamic var user: User? = nil
-    
-    convenience required init?(json: JSON) {
+    dynamic var customer: Customer? = nil
+
+    var box_id: Int?
+    var customer_id: Int?
+
+    convenience required init(node: Node, in context: Context) throws {
         self.init()
         
-        id = ("id" <~~ json)!
-        text = ("text" <~~ json)!
-        rating = ("rating" <~~ json)!
-        
-        if let interval: Double = "date" <~~ json {
-            self.date = Date(timeIntervalSince1970: interval)
+        id = try node.extract("id")
+
+        text = try node.extract("text")
+        rating = try node.extract("rating")
+
+        box_id = try? node.extract("box_id")
+        customer_id = try? node.extract("customer_id")
+
+        date = (try? node.extract("date") { (dateString: String) in
+            try Date(ISO8601String: dateString)
+        }) ?? Date()
+    }
+
+    override func link() throws {
+        if let box_id = box_id {
+            box = try Realm().object(ofType: Box.self, forPrimaryKey: box_id)
+        }
+
+        if let customer_id = customer_id {
+            customer = try Realm().object(ofType: Customer.self, forPrimaryKey: customer_id)
         }
     }
     

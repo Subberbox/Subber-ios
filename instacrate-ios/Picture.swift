@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Gloss
+import Node
 import RealmSwift
 
 final class Picture: BaseObject {
@@ -16,15 +16,32 @@ final class Picture: BaseObject {
     dynamic var url = ""
     
     dynamic var box: Box? = nil
+
+    var box_id: Int?
     
-    convenience required init?(json: JSON) {
+    convenience required init(node: Node, in context: Context = EmptyNode) throws {
         self.init()
-        
-        id = ("id" <~~ json)!
-        url = ("url" <~~ json)!
-        box = "box" <~~ json
+
+        id = try node.extract("id")
+
+        url = try node.extract("url")
+        box_id = try node.extract("box_id")
     }
-    
+
+    override func makeNode(context: Context) throws -> Node {
+        return try Node(node: [
+            "id" : .number(.int(id)),
+            "url" : .string(url),
+            "box_id" : .number(.int(box_id!))
+        ])
+    }
+
+    override func link() throws {
+        if let box_id = box_id {
+            box = try Realm().object(ofType: Box.self, forPrimaryKey: box_id)
+        }
+    }
+
     override class func primaryKey() -> String? {
         return "id"
     }
