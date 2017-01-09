@@ -9,18 +9,36 @@
 import Foundation
 import Moya
 
-enum Format {
+enum Format: String {
 
     case short
     case long
+
+    public var responseType: ResponseType {
+        switch self {
+        case .short:
+            return .object(Box.self)
+        case .long:
+            return .tuple(.object(Box.self),
+                           ["pictures" : .array(.object(Picture.self)),
+                            "reviews" : .array(.tuple(
+                                .object(Review.self),
+                                ["customer" : .object(Customer.self)])),
+                            "vendor" : .object(Vendor.self)])
+        }
+    }
+}
+
+enum Curated: String {
+    case all
+    case featured
+    case staffpicks
+    case new
 }
 
 enum Boxes {
-    
-    case all(format: Format)
-    case featured(format: Format)
-    case new(format: Format)
 
+    case boxes(format: Format, curated: Curated)
     case box(format: Format, id: Int)
 }
 
@@ -31,7 +49,13 @@ extension Boxes: ResponseTargetType {
     }
     
     public var path: String {
-        return "box"
+
+        switch self {
+        case .boxes:
+            return "boxes"
+        case let .box(_, id):
+            return "boxes/\(id)"
+        }
     }
     
     public var method: Moya.Method {
@@ -39,7 +63,17 @@ extension Boxes: ResponseTargetType {
     }
     
     var parameters: [String : Any]? {
-        return nil
+        var parameters: [String : Any] = [:]
+
+        if case let .boxes(_, curated) = self {
+            parameters["curated"] = curated.rawValue
+        }
+
+        switch self {
+        case let .boxes(format, _), let .box(format, _):
+            parameters["format"] = format.rawValue
+            return parameters
+        }
     }
     
     public var task: Task {
@@ -49,26 +83,13 @@ extension Boxes: ResponseTargetType {
     public var sampleData: Data {
         return "test".data(using: .utf8)!
     }
-
-    private var baseResponseType: ResponseType {
-        switch self {
-        case let .all(format), let .featured(format), let .new(format), let .box(format, _):
-            switch format {
-            case .short:
-                return .object(Box.self)
-            case .long:
-                return .tuple(["box" : .object(Box.self),
-                               "pictures" : .array(.object(Picture.self)),
-                               "reviews" : .array(.object(Review.self))])
-            }
-        }
-    }
     
     public var responseType: ResponseType {
-        if case .box = self {
-            return self.baseResponseType
-        } else {
-            return .array(self.baseResponseType)
+        switch self {
+        case let .boxes(format, _):
+            return .array(format.responseType)
+        case let .box(format, _):
+            return format.responseType
         }
     }
 }

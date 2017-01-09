@@ -103,10 +103,10 @@ final class Vendor: BaseObject {
 //        verificationState = try? node.extract("verificationState")
     }
 
-    override func link() throws {
+    override func link(with objects: [BaseObject]) {
 
         if let category_id = category_id {
-            category = try Realm().object(ofType: Category.self, forPrimaryKey: category_id)
+            category = objects.find(primaryKey: category_id)
         }
     }
     

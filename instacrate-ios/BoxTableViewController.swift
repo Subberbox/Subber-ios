@@ -11,9 +11,6 @@ import UIKit
 import RealmSwift
 import Nuke
 import Moya
-import Jay
-
-let store = try! Realm()
 
 extension Realm {
     
@@ -24,30 +21,91 @@ extension Realm {
 
 extension Moya.Response {
 
-    func nativeMapJSON(shouldFailOnEmptyData: Bool = true, prettyPrint: Bool = false) throws -> JSON {
-        let formatting: Jay.Formatting = prettyPrint ? .prettified : .minified
-        return try Jay(formatting: formatting).jsonFromData([UInt8](data))
+    func mapNode(shouldFailOnEmptyData: Bool = true, prettyPrint: Bool = false) throws -> Node {
+        return try JSON(serialized: [UInt8](data)).node
+    }
+}
+
+enum UpdateType {
+    case delete
+    case modify
+    case add
+
+    func apply(changes: [IndexPath], on tableView: UITableView) {
+        switch self {
+        case .delete:
+            tableView.deleteRows(at: changes, with: .automatic)
+        case .modify:
+            tableView.reloadRows(at: changes, with: .automatic)
+        case .add:
+            tableView.insertRows(at: changes, with: .automatic)
+        }
+    }
+}
+
+extension Sequence where Iterator.Element == Int {
+
+    func indexPaths(for section: Int) -> [IndexPath] {
+        return self.map {
+            return IndexPath(row: $0, section: section)
+        }
+    }
+}
+
+extension UITableView {
+
+    func process(updates: [Int], in section: Int, for type: UpdateType) {
+        let indexPaths = updates.indexPaths(for: section)
+        type.apply(changes: indexPaths, on: self)
     }
 }
 
 class BoxTableViewController: UITableViewController {
     
-    let boxes = store.boxes
+    let boxes = try! Realm().boxes
     let provider = MoyaProvider<Boxes>()
+    var token: NotificationToken?
+
+    deinit {
+        token?.stop()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        provider.request(.all(format: .long)) { result in
+        provider.request(.boxes(format: .long, curated: .all)) { result in
             if case let .success(response) = result {
-                let json = try! response.nativeMapJSON()
-                let objects = try! parse(json: json, from: Boxes.all(format: .long))
+                let node = try! response.mapNode()
+                let objects = try! parse(node: node, from: Boxes.boxes(format: .long, curated: .all))
 
-                try! Realm().write {
+                for object in objects {
+                    object.link(with: objects)
+                }
+
+                let realm = try! Realm()
+
+                try! realm.write {
                     for object in objects {
-                        try! Realm().add(object, update: true)
+                        realm.add(object, update: true)
                     }
                 }
+            }
+        }
+
+        token = boxes.addNotificationBlock { (changes: RealmCollectionChange<Results<Box>>) in
+            switch changes {
+            case .initial(_):
+                self.tableView.reloadData()
+
+            case let .update(_, deletions, insertions, modifications):
+                self.tableView.beginUpdates()
+                self.tableView.process(updates: deletions, in: 0, for: .delete)
+                self.tableView.process(updates: insertions, in: 0, for: .add)
+                self.tableView.process(updates: modifications, in: 0, for: .modify)
+                self.tableView.endUpdates()
+
+            case let .error(error):
+                print("Error \(error)")
             }
         }
     }

@@ -14,6 +14,18 @@ struct GenericError: Error {
 
 }
 
+enum ParseError: Error {
+
+    case notFound(message: String)
+
+    var description: String {
+        switch self {
+        case let .notFound(message):
+            return message
+        }
+    }
+}
+
 @objc
 enum Frequency: Int {
 
@@ -30,6 +42,15 @@ enum Frequency: Int {
             return
         default:
             throw GenericError()
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .once:
+            return "once"
+        case .monthly:
+            return "monthly"
         }
     }
 }
@@ -76,17 +97,17 @@ final class Subscription: BaseObject {
         sub_id = (try? node.extract("sub_id")) ?? ""
     }
 
-    override func link() throws {
+    override func link(with objects: [BaseObject]) {
         if let box_id = box_id {
-            box = try Realm().object(ofType: Box.self, forPrimaryKey: box_id)
+            box = objects.find(primaryKey: box_id)
         }
 
         if let shipping_id = shipping_id {
-            address = try Realm().object(ofType: Shipping.self, forPrimaryKey: shipping_id)
+            address = objects.find(primaryKey: shipping_id)
         }
 
         if let customer_id = customer_id {
-            customer = try Realm().object(ofType: Customer.self, forPrimaryKey: customer_id)
+            customer = objects.find(primaryKey: customer_id)
         }
     }
     

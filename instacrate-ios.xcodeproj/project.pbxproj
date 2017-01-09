@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E4A81991E231150004F3BC5 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81911E231150004F3BC5 /* JSON.swift */; };
+		6E4A819B1E231150004F3BC5 /* JSON+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81931E231150004F3BC5 /* JSON+Equatable.swift */; };
+		6E4A819C1E231150004F3BC5 /* JSON+Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81941E231150004F3BC5 /* JSON+Node.swift */; };
+		6E4A819D1E231150004F3BC5 /* JSON+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81951E231150004F3BC5 /* JSON+Parse.swift */; };
+		6E4A819E1E231150004F3BC5 /* JSON+Serialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81961E231150004F3BC5 /* JSON+Serialize.swift */; };
+		6E4A819F1E231150004F3BC5 /* JSONRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81971E231150004F3BC5 /* JSONRepresentable.swift */; };
+		6E4A81A01E231150004F3BC5 /* Sequence+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81981E231150004F3BC5 /* Sequence+Convertible.swift */; };
 		6EA46C2A1DC7EF8800F57E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C291DC7EF8800F57E8A /* AppDelegate.swift */; };
 		6EA46C311DC7EF8800F57E8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C301DC7EF8800F57E8A /* Assets.xcassets */; };
 		6EA46C341DC7EF8800F57E8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C321DC7EF8800F57E8A /* LaunchScreen.storyboard */; };
@@ -32,6 +39,13 @@
 
 /* Begin PBXFileReference section */
 		0EC54C53D707E5ABCC4AC721 /* Pods-instacrate-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instacrate-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instacrate-ios/Pods-instacrate-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		6E4A81911E231150004F3BC5 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		6E4A81931E231150004F3BC5 /* JSON+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Equatable.swift"; sourceTree = "<group>"; };
+		6E4A81941E231150004F3BC5 /* JSON+Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Node.swift"; sourceTree = "<group>"; };
+		6E4A81951E231150004F3BC5 /* JSON+Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Parse.swift"; sourceTree = "<group>"; };
+		6E4A81961E231150004F3BC5 /* JSON+Serialize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Serialize.swift"; sourceTree = "<group>"; };
+		6E4A81971E231150004F3BC5 /* JSONRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRepresentable.swift; sourceTree = "<group>"; };
+		6E4A81981E231150004F3BC5 /* Sequence+Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Convertible.swift"; sourceTree = "<group>"; };
 		6EA46C261DC7EF8800F57E8A /* instacrate-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "instacrate-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA46C291DC7EF8800F57E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EA46C301DC7EF8800F57E8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,6 +159,13 @@
 				6EA46C5D1DC819D100F57E8A /* Server.swift */,
 				6EA46C611DC9394000F57E8A /* Boxes.swift */,
 				6EA46C5F1DC932A600F57E8A /* ResponseParsing.swift */,
+				6E4A81911E231150004F3BC5 /* JSON.swift */,
+				6E4A81931E231150004F3BC5 /* JSON+Equatable.swift */,
+				6E4A81941E231150004F3BC5 /* JSON+Node.swift */,
+				6E4A81951E231150004F3BC5 /* JSON+Parse.swift */,
+				6E4A81961E231150004F3BC5 /* JSON+Serialize.swift */,
+				6E4A81971E231150004F3BC5 /* JSONRepresentable.swift */,
+				6E4A81981E231150004F3BC5 /* Sequence+Convertible.swift */,
 			);
 			name = "API Client";
 			sourceTree = "<group>";
@@ -280,11 +301,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E4A819F1E231150004F3BC5 /* JSONRepresentable.swift in Sources */,
+				6E4A819B1E231150004F3BC5 /* JSON+Equatable.swift in Sources */,
+				6E4A819E1E231150004F3BC5 /* JSON+Serialize.swift in Sources */,
 				6EA46C521DC7F4AD00F57E8A /* Subscription.swift in Sources */,
 				6EA46C5B1DC7F4AD00F57E8A /* FeaturedBox.swift in Sources */,
 				6EA46C501DC7F4AD00F57E8A /* Customer.swift in Sources */,
+				6E4A81991E231150004F3BC5 /* JSON.swift in Sources */,
 				6EA46C601DC932A600F57E8A /* ResponseParsing.swift in Sources */,
 				6EA46C551DC7F4AD00F57E8A /* Review.swift in Sources */,
+				6E4A819D1E231150004F3BC5 /* JSON+Parse.swift in Sources */,
 				6EA46C2A1DC7EF8800F57E8A /* AppDelegate.swift in Sources */,
 				6EA46C571DC7F4AD00F57E8A /* Order.swift in Sources */,
 				6EA46C511DC7F4AD00F57E8A /* Vendor.swift in Sources */,
@@ -292,7 +318,9 @@
 				6EA46C541DC7F4AD00F57E8A /* Session.swift in Sources */,
 				6EA46C561DC7F4AD00F57E8A /* Picture.swift in Sources */,
 				6EA46C5E1DC819D100F57E8A /* Server.swift in Sources */,
+				6E4A819C1E231150004F3BC5 /* JSON+Node.swift in Sources */,
 				6EA46C531DC7F4AD00F57E8A /* Shipping.swift in Sources */,
+				6E4A81A01E231150004F3BC5 /* Sequence+Convertible.swift in Sources */,
 				6EA46C621DC9394000F57E8A /* Boxes.swift in Sources */,
 				6EA46C411DC7F3B500F57E8A /* BoxTableViewController.swift in Sources */,
 				6EA46C431DC7F3D300F57E8A /* BoxTableViewCell.swift in Sources */,
@@ -414,6 +442,7 @@
 			baseConfigurationReference = 0EC54C53D707E5ABCC4AC721 /* Pods-instacrate-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XE46VNG5UN;
 				INFOPLIST_FILE = "instacrate-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instacrate.instacrate-ios";
@@ -427,6 +456,7 @@
 			baseConfigurationReference = 84225ED4A0FAE2F3E86E50ED /* Pods-instacrate-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XE46VNG5UN;
 				INFOPLIST_FILE = "instacrate-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instacrate.instacrate-ios";

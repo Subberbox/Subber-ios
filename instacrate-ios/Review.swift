@@ -33,20 +33,25 @@ final class Review: BaseObject {
         rating = try node.extract("rating")
 
         box_id = try? node.extract("box_id")
+
         customer_id = try? node.extract("customer_id")
+
+        if let customerNode = node["customer"] {
+            customer_id = try? customerNode.extract("id")
+        }
 
         date = (try? node.extract("date") { (dateString: String) in
             try Date(ISO8601String: dateString)
         }) ?? Date()
     }
 
-    override func link() throws {
+    override func link(with objects: [BaseObject]) {
         if let box_id = box_id {
-            box = try Realm().object(ofType: Box.self, forPrimaryKey: box_id)
+            box = objects.find(primaryKey: box_id)
         }
 
         if let customer_id = customer_id {
-            customer = try Realm().object(ofType: Customer.self, forPrimaryKey: customer_id)
+            customer = objects.find(primaryKey: customer_id)
         }
     }
     

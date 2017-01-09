@@ -10,40 +10,6 @@ import Foundation
 import Moya
 import RealmSwift
 import Node
-import Jay
-
-extension JSON {
-
-    func toNode() -> Node {
-        switch self {
-        case .array(let values):
-            return .array(values.map { $0.toNode() })
-        case .boolean(let value):
-            return .bool(value)
-        case .null:
-            return .null
-        case .number(let number):
-            let num: Node.Number
-            switch number {
-            case .double(let value):
-                num = .double(value)
-            case .integer(let value):
-                num = .int(value)
-            case .unsignedInteger(let value):
-                num = .uint(value)
-            }
-            return .number(num)
-        case .object(let values):
-            var dictionary: [String: Node] = [:]
-            for (key, value) in values {
-                dictionary[key] = value.toNode()
-            }
-            return .object(dictionary)
-        case .string(let value):
-            return .string(value)
-        }
-    }
-}
 
 internal extension Date {
 
@@ -102,7 +68,7 @@ internal extension Node {
 
 protocol Linkable {
 
-    func link() throws
+    func link(with objects: [BaseObject])
 }
 
 class BaseObject: Object, NodeConvertible, Linkable {
@@ -115,7 +81,7 @@ class BaseObject: Object, NodeConvertible, Linkable {
         return try Node(node: [])
     }
 
-    func link() throws {
+    func link(with objects: [BaseObject]) {
         
     }
 }
@@ -130,14 +96,22 @@ indirect enum ResponseType {
     case object(BaseObject.Type)
     
     case array(ResponseType)
-    case tuple([String : ResponseType])
+    case tuple(ResponseType, [String : ResponseType])
 }
 
-func parse(json: JSON, from endpoint: ResponseTargetType) throws -> [BaseObject] {
-    return try parse(node: json.toNode(), from: endpoint.responseType)
+extension Node {
+
+    func prettyPrint() throws -> String {
+        let json = try JSON(node: self)
+        return try Data(bytes: json.serialize(prettyPrint: true)).base64EncodedString()
+    }
 }
 
-func parse(node: Node, from endpoint: ResponseType) throws -> [BaseObject] {
+func parse(node: Node, from endpoint: ResponseTargetType) throws -> [BaseObject] {
+    return try parse(node: node, from: endpoint.responseType)
+}
+
+fileprivate func parse(node: Node, from endpoint: ResponseType) throws -> [BaseObject] {
     
     var results: [BaseObject] = []
     
@@ -145,9 +119,13 @@ func parse(node: Node, from endpoint: ResponseType) throws -> [BaseObject] {
     case let .object(type):
         try results.append(type.init(node: node))
 
-    case let .tuple(internals):
-        try results.append(contentsOf: internals.flatMap { (tuple) -> [BaseObject] in
-            guard let subnode = node[tuple.key] else { throw GenericError() }
+    case let .tuple(primary, secondary):
+        try results.append(contentsOf: parse(node: node, from: primary))
+
+        try results.append(contentsOf: secondary.flatMap { (tuple) -> [BaseObject] in
+            guard let subnode = node[tuple.key] else {
+                throw ParseError.notFound(message: "Failed trying to instantiate \(tuple.value). \(tuple.key) not found on node with \(try! node.prettyPrint())")
+            }
             return try parse(node: subnode, from: tuple.value)
         })
         

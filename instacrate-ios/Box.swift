@@ -20,7 +20,7 @@ final class Box: BaseObject {
     dynamic var brief = ""
     dynamic var long_desc = ""
     dynamic var short_desc = ""
-    dynamic var bullets: [String] = []
+    dynamic var bullets = ""
     dynamic var freq = ""
     dynamic var price = 0.0
     dynamic var publish_date = Date()
@@ -44,8 +44,7 @@ final class Box: BaseObject {
         long_desc = try node.extract("long_desc")
         short_desc = try node.extract("short_desc")
 
-        let string = try node.extract("bullets") as String
-        bullets = string.components(separatedBy: Box.boxBulletSeparator)
+        bullets = try node.extract("bullets")
 
         price = try node.extract("price")
 
@@ -64,16 +63,16 @@ final class Box: BaseObject {
             "brief" : .string(brief),
             "long_desc" : .string(long_desc),
             "short_desc" : .string(short_desc),
-            "bullets" : .string(bullets.joined(separator: Box.boxBulletSeparator)),
+            "bullets" : .string(bullets),
             "price" : .number(.double(price)),
             "vendor_id" : .number(.int(vendor_id!)),
             "publish_date" : .string(publish_date.ISO8601String),
         ]).add(objects: ["plan_id" : plan_id])
     }
 
-    override func link() throws {
+    override func link(with objects: [BaseObject]) {
         if let vendor_id = vendor_id {
-            vendor = try Realm().object(ofType: Vendor.self, forPrimaryKey: vendor_id)
+            vendor = objects.find(primaryKey: vendor_id)
         }
     }
     

@@ -36,9 +36,9 @@ final class Picture: BaseObject {
         ])
     }
 
-    override func link() throws {
+    override func link(with objects: [BaseObject]) {
         if let box_id = box_id {
-            box = try Realm().object(ofType: Box.self, forPrimaryKey: box_id)
+            box = objects.find(primaryKey: box_id)
         }
     }
 

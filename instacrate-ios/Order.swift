@@ -52,17 +52,17 @@ final class Order: BaseObject {
         ])
     }
 
-    override func link() throws {
+    override func link(with objects: [BaseObject]) {
         if let subscription_id = subscription_id {
-            subscription = try Realm().object(ofType: Subscription.self, forPrimaryKey: subscription_id)
+            subscription = objects.find(primaryKey: subscription_id)
         }
 
         if let shipping_id = shipping_id {
-            address = try Realm().object(ofType: Shipping.self, forPrimaryKey: shipping_id)
+            address = objects.find(primaryKey: shipping_id)
         }
 
         if let vendor_id = vendor_id {
-            vendor = try Realm().object(ofType: Vendor.self, forPrimaryKey: vendor_id)
+            vendor = objects.find(primaryKey: vendor_id)
         }
     }
     

@@ -47,9 +47,9 @@ final class Shipping: BaseObject {
         apartment = (try? node.extract("apartment")) ?? ""
     }
 
-    override func link() throws {
+    override func link(with objects: [BaseObject]) {
         if let customer_id = customer_id {
-            customer = try Realm().object(ofType: Customer.self, forPrimaryKey: customer_id)
+            customer = objects.find(primaryKey: customer_id)
         }
     }
     
