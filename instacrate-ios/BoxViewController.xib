@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BoxViewController" customModule="instacrate_ios" customModuleProvider="target">
+            <connections>
+                <outlet property="addToCartButton" destination="kT4-oE-c4K" id="auy-e9-2rL"/>
+                <outlet property="averageReviewScoreLabel" destination="KDc-R7-GIE" id="whx-N3-pcq"/>
+                <outlet property="boxImageView" destination="nRx-LB-uga" id="IGN-4J-FrI"/>
+                <outlet property="briefLabel" destination="PX5-qN-lp3" id="v7E-iw-IoV"/>
+                <outlet property="firstBulletPointLabel" destination="gyB-2n-VW5" id="czJ-fJ-aoy"/>
+                <outlet property="fourthBulletPointLabel" destination="mLj-hr-ggN" id="qeW-gD-sTH"/>
+                <outlet property="oneTimeView" destination="VYP-cW-xtU" id="4Nw-gC-TcN"/>
+                <outlet property="secondBulletPointLabel" destination="yT6-ic-JGI" id="RAZ-ES-dAV"/>
+                <outlet property="subscribeView" destination="9Sd-AU-O28" id="6kp-FK-cJD"/>
+                <outlet property="thirdBulletPointLabel" destination="6lE-2K-UIQ" id="sMY-OP-rwN"/>
+                <outlet property="titleLabel" destination="Pag-Fn-HiJ" id="TAO-tk-pU3"/>
+                <outlet property="vendorNameLabel" destination="VKl-yQ-8CD" id="vhO-1R-VHg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nRx-LB-uga">
+                    <rect key="frame" x="0.0" y="64" width="375" height="219"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="nRx-LB-uga" secondAttribute="height" multiplier="125:73" id="5Xs-zV-gQV"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BeanGenius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pag-Fn-HiJ">
+                    <rect key="frame" x="20" y="291" width="101.5" height="25"/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eK0-XI-E3h">
+                    <rect key="frame" x="20" y="316" width="18" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BeanGenius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKl-yQ-8CD">
+                    <rect key="frame" x="44" y="316" width="87" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receive a monthly box of our high quality, freshly roasted specialty coffee." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PX5-qN-lp3">
+                    <rect key="frame" x="20" y="343.5" width="335" height="41"/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="751" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDc-R7-GIE">
+                    <rect key="frame" x="306.5" y="293.5" width="24" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="RZ7-e5-tjm">
+                    <rect key="frame" x="334.5" y="293.5" width="20.5" height="20.5"/>
+                    <color key="tintColor" red="0.94509803921568625" green="0.76862745098039209" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="RZ7-e5-tjm" secondAttribute="height" multiplier="1:1" id="95u-aA-J5l"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="G1a-jT-gk7">
+                    <rect key="frame" x="28" y="392.5" width="214" height="91"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Le8-ex-V69" userLabel="Bullet Points Stack View">
+                            <rect key="frame" x="0.0" y="0.0" width="5" height="91"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMh-Th-0LO" userLabel="-">
+                                    <rect key="frame" x="0.0" y="0.0" width="5" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdN-Vy-uTZ" userLabel="-">
+                                    <rect key="frame" x="0.0" y="23.5" width="5" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ur-UF-LB3" userLabel="-">
+                                    <rect key="frame" x="0.0" y="47" width="5" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39v-H5-l57" userLabel="-">
+                                    <rect key="frame" x="0.0" y="70.5" width="5" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="kZ7-ad-l7c" userLabel="Bullet Points Text Stack View">
+                            <rect key="frame" x="10" y="0.0" width="204" height="91"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fully customizable flavors" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyB-2n-VW5" userLabel="First Bullet Point">
+                                    <rect key="frame" x="0.0" y="0.0" width="204" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High-quality specialty coffee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yT6-ic-JGI" userLabel="Second Bullet Point">
+                                    <rect key="frame" x="0.0" y="23.5" width="204" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exclusive network of roasters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lE-2K-UIQ" userLabel="Third Bullet Point">
+                                    <rect key="frame" x="0.0" y="47" width="204" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Always fresh coffee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLj-hr-ggN" userLabel="Fourth Bullet Point">
+                                    <rect key="frame" x="0.0" y="70.5" width="204" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT4-oE-c4K">
+                    <rect key="frame" x="20" y="553" width="335" height="50"/>
+                    <color key="tintColor" red="0.0" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Add to Cart" image="cart-add">
+                        <color key="titleColor" red="0.0" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5DN-pL-7fS">
+                    <rect key="frame" x="20" y="504" width="335" height="50"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYP-cW-xtU">
+                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="50"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dsc-OY-rGg">
+                                    <rect key="frame" x="50.5" y="4.5" width="68" height="41"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One-Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XW-uM-W8N">
+                                            <rect key="frame" x="0.0" y="0.0" width="68" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.95" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahf-2w-5Ob">
+                                            <rect key="frame" x="15" y="20.5" width="38.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="O1x-oy-pjW"/>
+                                <constraint firstItem="dsc-OY-rGg" firstAttribute="centerX" secondItem="VYP-cW-xtU" secondAttribute="centerX" id="PtK-L4-Qvz"/>
+                                <constraint firstItem="dsc-OY-rGg" firstAttribute="centerY" secondItem="VYP-cW-xtU" secondAttribute="centerY" id="reL-kv-hOc"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Sd-AU-O28">
+                            <rect key="frame" x="167.5" y="0.0" width="167.5" height="50"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d14-Cb-bXe">
+                                    <rect key="frame" x="35" y="4.5" width="98.5" height="41"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kn-OA-Kn6">
+                                            <rect key="frame" x="15" y="0.0" width="68.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.95 / month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBb-pH-nEW">
+                                            <rect key="frame" x="0.0" y="20.5" width="98.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="d14-Cb-bXe" firstAttribute="centerY" secondItem="9Sd-AU-O28" secondAttribute="centerY" id="5YX-VP-niz"/>
+                                <constraint firstItem="d14-Cb-bXe" firstAttribute="centerX" secondItem="9Sd-AU-O28" secondAttribute="centerX" id="EwD-Ry-Ue5"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="9Sd-AU-O28" firstAttribute="width" secondItem="VYP-cW-xtU" secondAttribute="width" id="30o-f4-Zho"/>
+                        <constraint firstItem="9Sd-AU-O28" firstAttribute="height" secondItem="VYP-cW-xtU" secondAttribute="height" id="bqw-Z7-BzU"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="PX5-qN-lp3" firstAttribute="top" secondItem="VKl-yQ-8CD" secondAttribute="bottom" constant="8" symbolic="YES" id="0JQ-b4-Kke"/>
+                <constraint firstItem="Pag-Fn-HiJ" firstAttribute="top" secondItem="nRx-LB-uga" secondAttribute="bottom" constant="8" symbolic="YES" id="0qA-iP-kSh"/>
+                <constraint firstItem="kT4-oE-c4K" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="6SH-ky-a8a"/>
+                <constraint firstAttribute="bottom" secondItem="kT4-oE-c4K" secondAttribute="bottom" constant="64" id="7Dx-O3-GC4"/>
+                <constraint firstAttribute="trailing" secondItem="RZ7-e5-tjm" secondAttribute="trailing" constant="20" symbolic="YES" id="7lP-ry-Jak"/>
+                <constraint firstItem="kT4-oE-c4K" firstAttribute="top" secondItem="5DN-pL-7fS" secondAttribute="bottom" constant="-1" id="8ls-GI-wrp"/>
+                <constraint firstItem="eK0-XI-E3h" firstAttribute="leading" secondItem="Pag-Fn-HiJ" secondAttribute="leading" id="Ik8-kP-qZo"/>
+                <constraint firstItem="VKl-yQ-8CD" firstAttribute="baseline" secondItem="eK0-XI-E3h" secondAttribute="baseline" id="Jg3-Ny-vM7"/>
+                <constraint firstItem="eK0-XI-E3h" firstAttribute="top" secondItem="Pag-Fn-HiJ" secondAttribute="bottom" id="OGt-NL-WPm"/>
+                <constraint firstItem="PX5-qN-lp3" firstAttribute="leading" secondItem="eK0-XI-E3h" secondAttribute="leading" id="QOD-Ck-tdO"/>
+                <constraint firstItem="G1a-jT-gk7" firstAttribute="leading" secondItem="PX5-qN-lp3" secondAttribute="leading" constant="8" id="RV9-j5-G7C"/>
+                <constraint firstItem="VKl-yQ-8CD" firstAttribute="leading" secondItem="eK0-XI-E3h" secondAttribute="trailing" constant="6" id="UDN-dx-9Q8"/>
+                <constraint firstItem="5DN-pL-7fS" firstAttribute="trailing" secondItem="kT4-oE-c4K" secondAttribute="trailing" id="a1N-Kf-7tj"/>
+                <constraint firstAttribute="trailing" secondItem="PX5-qN-lp3" secondAttribute="trailing" constant="20" symbolic="YES" id="b0s-kL-g1W"/>
+                <constraint firstItem="RZ7-e5-tjm" firstAttribute="leading" secondItem="KDc-R7-GIE" secondAttribute="trailing" constant="4" id="cUh-3H-9Im"/>
+                <constraint firstItem="RZ7-e5-tjm" firstAttribute="height" secondItem="KDc-R7-GIE" secondAttribute="height" id="dPE-Pv-Poj"/>
+                <constraint firstItem="Pag-Fn-HiJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="dh8-tW-kVG"/>
+                <constraint firstItem="G1a-jT-gk7" firstAttribute="top" secondItem="PX5-qN-lp3" secondAttribute="bottom" constant="8" symbolic="YES" id="eDZ-j1-bA9"/>
+                <constraint firstAttribute="trailing" secondItem="nRx-LB-uga" secondAttribute="trailing" id="gcV-s2-EUJ"/>
+                <constraint firstItem="nRx-LB-uga" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jLk-n9-RwS"/>
+                <constraint firstItem="RZ7-e5-tjm" firstAttribute="centerY" secondItem="Pag-Fn-HiJ" secondAttribute="centerY" id="stk-6J-02u"/>
+                <constraint firstAttribute="trailing" secondItem="kT4-oE-c4K" secondAttribute="trailing" constant="20" symbolic="YES" id="sul-20-OO2"/>
+                <constraint firstItem="KDc-R7-GIE" firstAttribute="centerY" secondItem="RZ7-e5-tjm" secondAttribute="centerY" id="t7a-l6-l9I"/>
+                <constraint firstItem="nRx-LB-uga" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="ua2-pb-eeJ"/>
+                <constraint firstItem="kT4-oE-c4K" firstAttribute="height" secondItem="VYP-cW-xtU" secondAttribute="height" id="wDI-vs-KgJ"/>
+                <constraint firstItem="5DN-pL-7fS" firstAttribute="leading" secondItem="kT4-oE-c4K" secondAttribute="leading" id="zav-L5-K78"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cart-add" width="25" height="25"/>
+        <image name="star" width="25" height="25"/>
+    </resources>
+</document>

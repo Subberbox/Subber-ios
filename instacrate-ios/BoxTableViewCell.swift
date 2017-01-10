@@ -12,7 +12,10 @@ import UIKit
 class BoxTableViewCell: UITableViewCell {
     
     @IBOutlet weak var boxNameLabel: UILabel!
+    @IBOutlet weak var vendorNameLabel: UILabel!
+
+    @IBOutlet weak var ratingLabel: UILabel!
+
     @IBOutlet weak var boxDescriptionLabel: UILabel!
     @IBOutlet weak var boxImageView: UIImageView!
-    
 }

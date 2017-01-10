@@ -34,6 +34,10 @@ final class Box: BaseObject {
     let subscriptions = LinkingObjects(fromType: Subscription.self, property: "box")
 
     var vendor_id: Int?
+
+    func splitBullets() -> [String] {
+        return bullets.components(separatedBy: "<<<>>>")
+    }
     
     convenience required init(node: Node, in context: Context) throws {
         self.init()

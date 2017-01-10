@@ -54,7 +54,7 @@ extension Sequence where Iterator.Element == Int {
 
 extension UITableView {
 
-    func process(updates: [Int], in section: Int, for type: UpdateType) {
+    func apply(updates: [Int], in section: Int, for type: UpdateType) {
         let indexPaths = updates.indexPaths(for: section)
         type.apply(changes: indexPaths, on: self)
     }
@@ -72,25 +72,10 @@ class BoxTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = "Instacrate"
         
-        provider.request(.boxes(format: .long, curated: .all)) { result in
-            if case let .success(response) = result {
-                let node = try! response.mapNode()
-                let objects = try! parse(node: node, from: Boxes.boxes(format: .long, curated: .all))
-
-                for object in objects {
-                    object.link(with: objects)
-                }
-
-                let realm = try! Realm()
-
-                try! realm.write {
-                    for object in objects {
-                        realm.add(object, update: true)
-                    }
-                }
-            }
-        }
+        provider.request(.boxes(format: .long, curated: .all)) { result in }
 
         token = boxes.addNotificationBlock { (changes: RealmCollectionChange<Results<Box>>) in
             switch changes {
@@ -99,9 +84,9 @@ class BoxTableViewController: UITableViewController {
 
             case let .update(_, deletions, insertions, modifications):
                 self.tableView.beginUpdates()
-                self.tableView.process(updates: deletions, in: 0, for: .delete)
-                self.tableView.process(updates: insertions, in: 0, for: .add)
-                self.tableView.process(updates: modifications, in: 0, for: .modify)
+                self.tableView.apply(updates: deletions, in: 0, for: .delete)
+                self.tableView.apply(updates: insertions, in: 0, for: .add)
+                self.tableView.apply(updates: modifications, in: 0, for: .modify)
                 self.tableView.endUpdates()
 
             case let .error(error):
@@ -119,11 +104,21 @@ class BoxTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BoxTableViewCell", for: indexPath) as! BoxTableViewCell
+        let cell: BoxTableViewCell
+
+        if indexPath.row % 2 == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "BoxTableViewCell", for: indexPath) as! BoxTableViewCell
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "BoxTableViewCellFlipped", for: indexPath) as! BoxTableViewCell
+        }
+
         let box = boxes[indexPath.row]
         
         cell.boxNameLabel.text = box.name
-        cell.boxDescriptionLabel.text = box.description
+        cell.boxDescriptionLabel.text = box.brief
+
+        let rating: Double? = box.reviews.average(ofProperty: "rating")
+        cell.ratingLabel.text = String(format: "%.1f", rating ?? 4.2)
         
         if let string = box.pictures.first?.url, let url = URL(string: string) {
             image.loadImage(with: url, into: cell.boxImageView)
@@ -131,5 +126,11 @@ class BoxTableViewController: UITableViewController {
         
         return cell
     }
-    
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let box = boxes[indexPath.row]
+
+        let boxViewController = BoxViewController(boxPrimaryKey: box.id)
+        navigationController?.pushViewController(boxViewController, animated: true)
+    }
 }
