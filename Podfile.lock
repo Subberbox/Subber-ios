@@ -15,12 +15,13 @@ PODS:
     - Nuke (~> 4.0)
   - PathIndexable (1.0.1)
   - Polymorphic (1.0.2)
-  - Realm (2.1.2):
-    - Realm/Headers (= 2.1.2)
-  - Realm/Headers (2.1.2)
-  - RealmSwift (2.1.2):
-    - Realm (= 2.1.2)
+  - Realm (2.4.2):
+    - Realm/Headers (= 2.4.2)
+  - Realm/Headers (2.4.2)
+  - RealmSwift (2.4.2):
+    - Realm (= 2.4.2)
   - Result (3.1.0)
+  - Stripe (9.4.0)
 
 DEPENDENCIES:
   - Jay
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - Nuke (~> 4.0)
   - Nuke-Alamofire-Plugin
   - RealmSwift (~> 2.0)
+  - Stripe
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -39,10 +41,11 @@ SPEC CHECKSUMS:
   Nuke-Alamofire-Plugin: 4832f6786825e3d0d528757828b48c82e6e85225
   PathIndexable: 43c95e279ddb651bfe83c8a034ab1c25e21cbf9b
   Polymorphic: 79e4b2e4e2d266a347e6d6adffeb9dc66cd2e177
-  Realm: efe855f4d977c8ce5a82d3116d9f1ff155a6550c
-  RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
+  Realm: d27b758e12d62a3371879a065d4c40aa212c5a54
+  RealmSwift: 9556c0fe0f0cfecacfb755ae9e68ff379fc6bead
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
+  Stripe: '0957cc85df5c3df153e6fb44d307ea4b778b6bd1'
 
-PODFILE CHECKSUM: 83c0b0128c1958ef66e003519734cd6ea143430c
+PODFILE CHECKSUM: 109cd9686e178ae2fa8fd059ed7fc1f3c0618dae
 
-COCOAPODS: 1.2.0.beta.3
+COCOAPODS: 1.2.0

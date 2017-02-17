@@ -11,16 +11,19 @@ import Nuke
 import NukeAlamofirePlugin
 
 let loader = Nuke.Loader(loader: NukeAlamofirePlugin.DataLoader(), decoder: Nuke.DataDecoder(), cache: Cache.shared)
-let image = Nuke.Manager(loader: loader, cache: Cache.shared)
+let nuke = Nuke.Manager(loader: loader, cache: Cache.shared)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_8CLhJ9ky8vCfyVwFm2CZfXdc"
+        
+        window = UIWindow()
+        window?.rootViewController = MainTabBarController()
+        window?.makeKeyAndVisible()
         return true
     }
 

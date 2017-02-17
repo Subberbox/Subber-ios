@@ -11,36 +11,26 @@ import Moya
 import Result
 import RealmSwift
 
-final class NetworkRequestObjectRealmSerializer: PluginType {
-
-    func willSendRequest(_ request: RequestType, target: TargetType) {
-
+extension Response {
+    
+    static let noModifications: (BaseObject) -> (BaseObject) = { object in
+        return object
     }
-
-    func didReceiveResponse(_ result: Result<Moya.Response, Moya.Error>, target: TargetType) {
-
-        if case let .success(response) = result {
-
-            do {
-                let node = try response.mapNode()
-                let objects = try parse(node: node, from: Boxes.boxes(format: .long, curated: .all))
-
-                objects.forEach { $0.link(with: objects) }
-
-                let realm = try Realm()
-                try realm.write { objects.forEach { realm.add($0, update: true) } }
-
-                print("wrote \(objects.count) to realm")
-            } catch {
-                print("error while paring request from target \(target). error \(error)")
-            }
+    
+    func updateRealmAsRequest(from endpoint: ResponseTargetType, modify: ((BaseObject) -> BaseObject) = noModifications) throws {
+        let node = try mapNode()
+        let objects = try parse(node: node, from: endpoint)
+        
+        let prepared = objects.map { (object: BaseObject) -> (BaseObject) in
+            object.link(with: objects)
+            return modify(object)
         }
-    }
-}
-
-extension MoyaProvider {
-
-    convenience init() {
-        self.init(plugins: [NetworkRequestObjectRealmSerializer()])
+        
+        print("writing \(objects.count) objects from endpoint \(endpoint.string)")
+        
+        DispatchQueue.main.async {
+            let realm = try! Realm()
+            try! realm.write { prepared.forEach { realm.add($0, update: true) } }
+        }
     }
 }

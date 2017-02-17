@@ -9,6 +9,7 @@ target 'instacrate-ios' do
     pod 'Jay'
 
     pod 'RealmSwift', '~> 2.0'
+    pod 'Stripe'
     
     pod 'Moya', '8.0.0-beta.3'
     

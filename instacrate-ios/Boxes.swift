@@ -34,6 +34,19 @@ enum Curated: String {
     case featured
     case staffpicks
     case new
+    
+    var string: String {
+        switch self {
+        case .all:
+            return "all"
+        case .featured:
+            return "featured"
+        case .staffpicks:
+            return "staffpicks"
+        case .new:
+            return "new"
+        }
+    }
 }
 
 enum Boxes {
@@ -66,7 +79,7 @@ extension Boxes: ResponseTargetType {
         var parameters: [String : Any] = [:]
 
         if case let .boxes(_, curated) = self {
-            parameters["curated"] = curated.rawValue
+            parameters["curated"] = curated.string
         }
 
         switch self {
@@ -90,6 +103,17 @@ extension Boxes: ResponseTargetType {
             return .array(format.responseType)
         case let .box(format, _):
             return format.responseType
+        }
+    }
+    
+    var string: String {
+        switch self {
+        case let .box(format, id):
+            return "<Endpoint: format = \(format.rawValue), id = \(id)>"
+        
+        case let .boxes(format, curated):
+            return "<Endpoint: format = \(format.rawValue), curated = \(curated.string)>"
+        
         }
     }
 }

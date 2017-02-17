@@ -27,11 +27,24 @@
 		6E4A819E1E231150004F3BC5 /* JSON+Serialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81961E231150004F3BC5 /* JSON+Serialize.swift */; };
 		6E4A819F1E231150004F3BC5 /* JSONRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81971E231150004F3BC5 /* JSONRepresentable.swift */; };
 		6E4A81A01E231150004F3BC5 /* Sequence+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A81981E231150004F3BC5 /* Sequence+Convertible.swift */; };
+		6E72DA2B1E4F85B200684C4C /* CustomerAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72DA291E4F85B200684C4C /* CustomerAccountTableViewController.swift */; };
+		6E72DA2C1E4F85B200684C4C /* CustomerAccountTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E72DA2A1E4F85B200684C4C /* CustomerAccountTableViewController.xib */; };
+		6E72DA2F1E4F8A9500684C4C /* StripeVaporBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72DA2E1E4F8A9500684C4C /* StripeVaporBackendAdapter.swift */; };
+		6E90757F1E4AB34E00452C0F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90757E1E4AB34E00452C0F /* MainTabBarController.swift */; };
+		6E9075821E4AB4A000452C0F /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9075811E4AB4A000452C0F /* CategoriesTableViewController.swift */; };
+		6E9075851E4AB56800452C0F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9075841E4AB56800452C0F /* Categories.swift */; };
+		6E9075871E4AB80900452C0F /* CategoriesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9075861E4AB80900452C0F /* CategoriesTableViewController.xib */; };
+		6E90758A1E4AB83800452C0F /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9075881E4AB83800452C0F /* CategoryTableViewCell.swift */; };
+		6E90758B1E4AB83800452C0F /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9075891E4AB83800452C0F /* CategoryTableViewCell.xib */; };
+		6E90758D1E4AB9F800452C0F /* BoxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E90758C1E4AB9F800452C0F /* BoxTableViewCell.xib */; };
+		6E9075901E4AC27300452C0F /* MainPageTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E90758F1E4AC27300452C0F /* MainPageTableViewController.xib */; };
+		6E962C371E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E962C351E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.swift */; };
+		6E962C381E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E962C361E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.xib */; };
+		6E962C3A1E4BF19E00BE803B /* MainPageDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E962C391E4BF19E00BE803B /* MainPageDatasource.swift */; };
 		6EA46C2A1DC7EF8800F57E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C291DC7EF8800F57E8A /* AppDelegate.swift */; };
 		6EA46C311DC7EF8800F57E8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C301DC7EF8800F57E8A /* Assets.xcassets */; };
 		6EA46C341DC7EF8800F57E8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C321DC7EF8800F57E8A /* LaunchScreen.storyboard */; };
-		6EA46C3F1DC7F2C500F57E8A /* BoxTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA46C3E1DC7F2C500F57E8A /* BoxTableViewController.storyboard */; };
-		6EA46C411DC7F3B500F57E8A /* BoxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C401DC7F3B500F57E8A /* BoxTableViewController.swift */; };
+		6EA46C411DC7F3B500F57E8A /* MainPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C401DC7F3B500F57E8A /* MainPageTableViewController.swift */; };
 		6EA46C431DC7F3D300F57E8A /* BoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */; };
 		6EA46C501DC7F4AD00F57E8A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C441DC7F4AD00F57E8A /* Customer.swift */; };
 		6EA46C511DC7F4AD00F57E8A /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C451DC7F4AD00F57E8A /* Vendor.swift */; };
@@ -72,13 +85,26 @@
 		6E4A81961E231150004F3BC5 /* JSON+Serialize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Serialize.swift"; sourceTree = "<group>"; };
 		6E4A81971E231150004F3BC5 /* JSONRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRepresentable.swift; sourceTree = "<group>"; };
 		6E4A81981E231150004F3BC5 /* Sequence+Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Convertible.swift"; sourceTree = "<group>"; };
+		6E72DA291E4F85B200684C4C /* CustomerAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerAccountTableViewController.swift; sourceTree = "<group>"; };
+		6E72DA2A1E4F85B200684C4C /* CustomerAccountTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerAccountTableViewController.xib; sourceTree = "<group>"; };
+		6E72DA2E1E4F8A9500684C4C /* StripeVaporBackendAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeVaporBackendAdapter.swift; sourceTree = "<group>"; };
+		6E90757E1E4AB34E00452C0F /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		6E9075811E4AB4A000452C0F /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		6E9075841E4AB56800452C0F /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		6E9075861E4AB80900452C0F /* CategoriesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesTableViewController.xib; sourceTree = "<group>"; };
+		6E9075881E4AB83800452C0F /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		6E9075891E4AB83800452C0F /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
+		6E90758C1E4AB9F800452C0F /* BoxTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxTableViewCell.xib; sourceTree = "<group>"; };
+		6E90758F1E4AC27300452C0F /* MainPageTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageTableViewController.xib; sourceTree = "<group>"; };
+		6E962C351E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxAdvertisingBannerTableViewCell.swift; sourceTree = "<group>"; };
+		6E962C361E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxAdvertisingBannerTableViewCell.xib; sourceTree = "<group>"; };
+		6E962C391E4BF19E00BE803B /* MainPageDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageDatasource.swift; sourceTree = "<group>"; };
 		6EA46C261DC7EF8800F57E8A /* instacrate-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "instacrate-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA46C291DC7EF8800F57E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EA46C301DC7EF8800F57E8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EA46C331DC7EF8800F57E8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6EA46C351DC7EF8800F57E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6EA46C3E1DC7F2C500F57E8A /* BoxTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BoxTableViewController.storyboard; sourceTree = "<group>"; };
-		6EA46C401DC7F3B500F57E8A /* BoxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxTableViewController.swift; sourceTree = "<group>"; };
+		6EA46C401DC7F3B500F57E8A /* MainPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTableViewController.swift; sourceTree = "<group>"; };
 		6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxTableViewCell.swift; sourceTree = "<group>"; };
 		6EA46C441DC7F4AD00F57E8A /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		6EA46C451DC7F4AD00F57E8A /* Vendor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
@@ -119,6 +145,86 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6E72DA2D1E4F896300684C4C /* Stripe */ = {
+			isa = PBXGroup;
+			children = (
+				6E72DA2E1E4F8A9500684C4C /* StripeVaporBackendAdapter.swift */,
+			);
+			name = Stripe;
+			sourceTree = "<group>";
+		};
+		6E90757A1E4AB28600452C0F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				6E90757D1E4AB33A00452C0F /* Main Tab Bar Controller */,
+				6E90757B1E4AB28B00452C0F /* Boxes Table View Controller */,
+				6E90757C1E4AB29C00452C0F /* Box View Controller */,
+				6E9075801E4AB48100452C0F /* Categories Table View Controller */,
+				6E90758E1E4AC1DF00452C0F /* Customer Account View Controller */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		6E90757B1E4AB28B00452C0F /* Boxes Table View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6EA46C401DC7F3B500F57E8A /* MainPageTableViewController.swift */,
+				6E90758F1E4AC27300452C0F /* MainPageTableViewController.xib */,
+				6E962C391E4BF19E00BE803B /* MainPageDatasource.swift */,
+				6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */,
+				6E90758C1E4AB9F800452C0F /* BoxTableViewCell.xib */,
+				6E962C351E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.swift */,
+				6E962C361E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.xib */,
+			);
+			name = "Boxes Table View Controller";
+			sourceTree = "<group>";
+		};
+		6E90757C1E4AB29C00452C0F /* Box View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6E18EC4D1E23E94900D93A7B /* BoxViewController.swift */,
+				6E18EC4E1E23E94900D93A7B /* BoxViewController.xib */,
+			);
+			name = "Box View Controller";
+			sourceTree = "<group>";
+		};
+		6E90757D1E4AB33A00452C0F /* Main Tab Bar Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6E90757E1E4AB34E00452C0F /* MainTabBarController.swift */,
+			);
+			name = "Main Tab Bar Controller";
+			sourceTree = "<group>";
+		};
+		6E9075801E4AB48100452C0F /* Categories Table View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6E9075811E4AB4A000452C0F /* CategoriesTableViewController.swift */,
+				6E9075861E4AB80900452C0F /* CategoriesTableViewController.xib */,
+				6E9075881E4AB83800452C0F /* CategoryTableViewCell.swift */,
+				6E9075891E4AB83800452C0F /* CategoryTableViewCell.xib */,
+			);
+			name = "Categories Table View Controller";
+			sourceTree = "<group>";
+		};
+		6E9075831E4AB55500452C0F /* Target Types */ = {
+			isa = PBXGroup;
+			children = (
+				6EA46C611DC9394000F57E8A /* Boxes.swift */,
+				6E9075841E4AB56800452C0F /* Categories.swift */,
+			);
+			name = "Target Types";
+			sourceTree = "<group>";
+		};
+		6E90758E1E4AC1DF00452C0F /* Customer Account View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6E72DA291E4F85B200684C4C /* CustomerAccountTableViewController.swift */,
+				6E72DA2A1E4F85B200684C4C /* CustomerAccountTableViewController.xib */,
+			);
+			name = "Customer Account View Controller";
+			sourceTree = "<group>";
+		};
 		6EA46C1D1DC7EF8800F57E8A = {
 			isa = PBXGroup;
 			children = (
@@ -141,12 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				6EA46C291DC7EF8800F57E8A /* AppDelegate.swift */,
+				6E90757A1E4AB28600452C0F /* Screens */,
 				6EA46C5C1DC8011300F57E8A /* Model */,
-				6EA46C3E1DC7F2C500F57E8A /* BoxTableViewController.storyboard */,
-				6EA46C401DC7F3B500F57E8A /* BoxTableViewController.swift */,
-				6EA46C421DC7F3D300F57E8A /* BoxTableViewCell.swift */,
-				6E18EC4D1E23E94900D93A7B /* BoxViewController.swift */,
-				6E18EC4E1E23E94900D93A7B /* BoxViewController.xib */,
 				6EA46C631DC9396500F57E8A /* API Client */,
 				6EA46C3B1DC7F00200F57E8A /* Supporting Files */,
 			);
@@ -194,8 +296,9 @@
 		6EA46C631DC9396500F57E8A /* API Client */ = {
 			isa = PBXGroup;
 			children = (
+				6E72DA2D1E4F896300684C4C /* Stripe */,
+				6E9075831E4AB55500452C0F /* Target Types */,
 				6EA46C5D1DC819D100F57E8A /* Server.swift */,
-				6EA46C611DC9394000F57E8A /* Boxes.swift */,
 				6EA46C5F1DC932A600F57E8A /* ResponseParsing.swift */,
 				6E4A81911E231150004F3BC5 /* JSON.swift */,
 				6E4A81931E231150004F3BC5 /* JSON+Equatable.swift */,
@@ -279,16 +382,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E90758D1E4AB9F800452C0F /* BoxTableViewCell.xib in Resources */,
 				6E18EC5F1E23EBDE00D93A7B /* OpenSans-Italic.ttf in Resources */,
 				6E18EC5C1E23EBDE00D93A7B /* OpenSans-BoldItalic.ttf in Resources */,
+				6E72DA2C1E4F85B200684C4C /* CustomerAccountTableViewController.xib in Resources */,
 				6EA46C341DC7EF8800F57E8A /* LaunchScreen.storyboard in Resources */,
+				6E9075871E4AB80900452C0F /* CategoriesTableViewController.xib in Resources */,
 				6E18EC631E23EBDE00D93A7B /* OpenSans-Semibold.ttf in Resources */,
 				6E18EC5D1E23EBDE00D93A7B /* OpenSans-ExtraBold.ttf in Resources */,
 				6EA46C311DC7EF8800F57E8A /* Assets.xcassets in Resources */,
 				6E18EC611E23EBDE00D93A7B /* OpenSans-LightItalic.ttf in Resources */,
 				6E18EC501E23E94900D93A7B /* BoxViewController.xib in Resources */,
 				6E18EC5B1E23EBDE00D93A7B /* OpenSans-Bold.ttf in Resources */,
-				6EA46C3F1DC7F2C500F57E8A /* BoxTableViewController.storyboard in Resources */,
+				6E90758B1E4AB83800452C0F /* CategoryTableViewCell.xib in Resources */,
+				6E962C381E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.xib in Resources */,
+				6E9075901E4AC27300452C0F /* MainPageTableViewController.xib in Resources */,
 				6E18EC641E23EBDE00D93A7B /* OpenSans-SemiboldItalic.ttf in Resources */,
 				6E18EC601E23EBDE00D93A7B /* OpenSans-Light.ttf in Resources */,
 				6E18EC621E23EBDE00D93A7B /* OpenSans-Regular.ttf in Resources */,
@@ -351,17 +459,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E962C3A1E4BF19E00BE803B /* MainPageDatasource.swift in Sources */,
 				6E4A819F1E231150004F3BC5 /* JSONRepresentable.swift in Sources */,
 				6E4A819B1E231150004F3BC5 /* JSON+Equatable.swift in Sources */,
 				6E4A819E1E231150004F3BC5 /* JSON+Serialize.swift in Sources */,
 				6EA46C521DC7F4AD00F57E8A /* Subscription.swift in Sources */,
 				6EA46C5B1DC7F4AD00F57E8A /* FeaturedBox.swift in Sources */,
+				6E90758A1E4AB83800452C0F /* CategoryTableViewCell.swift in Sources */,
 				6EA46C501DC7F4AD00F57E8A /* Customer.swift in Sources */,
 				6E4A81991E231150004F3BC5 /* JSON.swift in Sources */,
 				6EA46C601DC932A600F57E8A /* ResponseParsing.swift in Sources */,
 				6EA46C551DC7F4AD00F57E8A /* Review.swift in Sources */,
 				6E4A819D1E231150004F3BC5 /* JSON+Parse.swift in Sources */,
+				6E72DA2F1E4F8A9500684C4C /* StripeVaporBackendAdapter.swift in Sources */,
 				6EA46C2A1DC7EF8800F57E8A /* AppDelegate.swift in Sources */,
+				6E9075851E4AB56800452C0F /* Categories.swift in Sources */,
 				6E18EC4A1E23E4AC00D93A7B /* Moya+Realm.swift in Sources */,
 				6EA46C571DC7F4AD00F57E8A /* Order.swift in Sources */,
 				6EA46C511DC7F4AD00F57E8A /* Vendor.swift in Sources */,
@@ -371,12 +483,16 @@
 				6EA46C5E1DC819D100F57E8A /* Server.swift in Sources */,
 				6E4A819C1E231150004F3BC5 /* JSON+Node.swift in Sources */,
 				6EA46C531DC7F4AD00F57E8A /* Shipping.swift in Sources */,
+				6E90757F1E4AB34E00452C0F /* MainTabBarController.swift in Sources */,
 				6E4A81A01E231150004F3BC5 /* Sequence+Convertible.swift in Sources */,
+				6E962C371E4BEE0300BE803B /* BoxAdvertisingBannerTableViewCell.swift in Sources */,
 				6EA46C621DC9394000F57E8A /* Boxes.swift in Sources */,
 				6E18EC4F1E23E94900D93A7B /* BoxViewController.swift in Sources */,
-				6EA46C411DC7F3B500F57E8A /* BoxTableViewController.swift in Sources */,
+				6E72DA2B1E4F85B200684C4C /* CustomerAccountTableViewController.swift in Sources */,
+				6EA46C411DC7F3B500F57E8A /* MainPageTableViewController.swift in Sources */,
 				6EA46C431DC7F3D300F57E8A /* BoxTableViewCell.swift in Sources */,
 				6EA46C581DC7F4AD00F57E8A /* Category.swift in Sources */,
+				6E9075821E4AB4A000452C0F /* CategoriesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +610,7 @@
 			baseConfigurationReference = 0EC54C53D707E5ABCC4AC721 /* Pods-instacrate-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XE46VNG5UN;
+				DEVELOPMENT_TEAM = XY9C7NEN6S;
 				INFOPLIST_FILE = "instacrate-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instacrate.instacrate-ios";
@@ -508,7 +624,7 @@
 			baseConfigurationReference = 84225ED4A0FAE2F3E86E50ED /* Pods-instacrate-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XE46VNG5UN;
+				DEVELOPMENT_TEAM = XY9C7NEN6S;
 				INFOPLIST_FILE = "instacrate-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instacrate.instacrate-ios";

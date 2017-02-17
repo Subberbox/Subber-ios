@@ -25,6 +25,19 @@ final class Box: BaseObject {
     dynamic var price = 0.0
     dynamic var publish_date = Date()
     dynamic var plan_id: String?
+    dynamic var type: String?
+    
+    dynamic var curatedRaw = Curated.all.rawValue
+    
+    var curated: Curated {
+        get {
+            return Curated(rawValue: curatedRaw) ?? .all
+        }
+        
+        set {
+            curatedRaw = newValue.rawValue
+        }
+    }
     
     let categories = List<Category>()
     dynamic var vendor: Vendor? = nil
@@ -58,6 +71,7 @@ final class Box: BaseObject {
 
         vendor_id = try node.extract("vendor_id")
         plan_id = try? node.extract("plan_id")
+        type = try? node.extract("type")
     }
 
     override func makeNode(context: Context) throws -> Node {
@@ -71,7 +85,10 @@ final class Box: BaseObject {
             "price" : .number(.double(price)),
             "vendor_id" : .number(.int(vendor_id!)),
             "publish_date" : .string(publish_date.ISO8601String),
-        ]).add(objects: ["plan_id" : plan_id])
+        ]).add(objects: [
+            "plan_id" : plan_id,
+            "type" : type
+        ])
     }
 
     override func link(with objects: [BaseObject]) {

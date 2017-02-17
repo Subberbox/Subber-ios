@@ -17,7 +17,7 @@ internal extension Date {
         let dateFormatter = DateFormatter()
         let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
         dateFormatter.locale = enUSPosixLocale
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
 
         guard let date = dateFormatter.date(from: ISO8601String) else {
             throw GenericError()
@@ -89,6 +89,8 @@ class BaseObject: Object, NodeConvertible, Linkable {
 protocol ResponseTargetType: TargetType {
     
     var responseType: ResponseType { get }
+    
+    var string: String { get }
 }
 
 indirect enum ResponseType {
