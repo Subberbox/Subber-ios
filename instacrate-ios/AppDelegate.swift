@@ -9,6 +9,8 @@
 import UIKit
 import Nuke
 import NukeAlamofirePlugin
+import Stripe
+import Alamofire
 
 let loader = Nuke.Loader(loader: NukeAlamofirePlugin.DataLoader(), decoder: Nuke.DataDecoder(), cache: Cache.shared)
 let nuke = Nuke.Manager(loader: loader, cache: Cache.shared)
@@ -17,6 +19,8 @@ let nuke = Nuke.Manager(loader: loader, cache: Cache.shared)
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var manager: SessionManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         STPPaymentConfiguration.shared().publishableKey = "pk_test_8CLhJ9ky8vCfyVwFm2CZfXdc"
@@ -24,6 +28,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
+        
+        // Hardcode login for now
+        guard let auth = Request.authorizationHeader(user: "jasper.gan@berkeley.edu", password: "jasper") else {
+            return true
+        }
+        
+        var headers = SessionManager.default.session.configuration.httpAdditionalHeaders!
+        headers[auth.key] = [auth.value]
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = headers
+            
+        manager = Alamofire.SessionManager(configuration: configuration)
+        
+        manager?.request("http://api.instacrate.me/authentication/?type=customer", method: .post, headers: [auth.key: auth.value]).nativeResponseJSON { response in
+            let response = response.response
+            let cookies = HTTPCookie.cookies(withResponseHeaderFields: response?.allHeaderFields as! [String: String], for: response!.url!)
+            
+            print(HTTPCookieStorage.shared.cookies ?? [])
+
+            SessionManager.default.session.configuration.httpCookieStorage?.setCookies(cookies, for: response?.url, mainDocumentURL: nil)
+        }
+
         return true
     }
 

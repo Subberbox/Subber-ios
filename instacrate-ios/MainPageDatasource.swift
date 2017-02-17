@@ -158,4 +158,8 @@ class MainPageDatasource: NSObject, UITableViewDataSource, UITableViewDelegate {
         let sectionType = MainPageDatasource.curatedSections[section]
         return curatedBoxes.filter("type = %i", sectionType.string)
     }
+    
+    func object(for indexPath: IndexPath) -> Box {
+        return objects(in: indexPath.section)[indexPath.row]
+    }
 }

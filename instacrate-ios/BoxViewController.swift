@@ -97,6 +97,15 @@ class BoxViewController: UIViewController {
         }
     }
 
+    @IBAction func didPressBuyButton(_ sender: Any) {
+        guard let _box = try? Realm().object(ofType: Box.self, forPrimaryKey: boxPrimaryKey), let box = _box else {
+            return
+        }
+        
+        let checkout = CheckoutViewController(product: box.name, price: Int(box.price * 100))
+        self.navigationController?.pushViewController(checkout, animated: true)
+    }
+    
     func updateView(with box: Box) {
 
         if let string = box.pictures.first?.url, let url = URL(string: string) {

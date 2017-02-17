@@ -60,6 +60,9 @@
 		6EA46C5E1DC819D100F57E8A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C5D1DC819D100F57E8A /* Server.swift */; };
 		6EA46C601DC932A600F57E8A /* ResponseParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C5F1DC932A600F57E8A /* ResponseParsing.swift */; };
 		6EA46C621DC9394000F57E8A /* Boxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA46C611DC9394000F57E8A /* Boxes.swift */; };
+		6EE2D8971E5681F000FC6514 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE2D8961E5681F000FC6514 /* CheckoutViewController.swift */; };
+		6EE2D8991E569AB500FC6514 /* CheckoutRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE2D8981E569AB500FC6514 /* CheckoutRowView.swift */; };
+		6EE2D89B1E569AE600FC6514 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE2D89A1E569AE600FC6514 /* Button.swift */; };
 		88E80931A1A83E1C22D8C8A7 /* Pods_instacrate_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1F0ED32E4FAE2848D65799 /* Pods_instacrate_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +123,9 @@
 		6EA46C5D1DC819D100F57E8A /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		6EA46C5F1DC932A600F57E8A /* ResponseParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParsing.swift; sourceTree = "<group>"; };
 		6EA46C611DC9394000F57E8A /* Boxes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Boxes.swift; sourceTree = "<group>"; };
+		6EE2D8961E5681F000FC6514 /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		6EE2D8981E569AB500FC6514 /* CheckoutRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutRowView.swift; sourceTree = "<group>"; };
+		6EE2D89A1E569AE600FC6514 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		84225ED4A0FAE2F3E86E50ED /* Pods-instacrate-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instacrate-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-instacrate-ios/Pods-instacrate-ios.release.xcconfig"; sourceTree = "<group>"; };
 		9B1F0ED32E4FAE2848D65799 /* Pods_instacrate_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instacrate_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -161,6 +167,7 @@
 				6E90757C1E4AB29C00452C0F /* Box View Controller */,
 				6E9075801E4AB48100452C0F /* Categories Table View Controller */,
 				6E90758E1E4AC1DF00452C0F /* Customer Account View Controller */,
+				6EE2D8951E5681E100FC6514 /* Checkout */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -312,6 +319,16 @@
 			name = "API Client";
 			sourceTree = "<group>";
 		};
+		6EE2D8951E5681E100FC6514 /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				6EE2D8961E5681F000FC6514 /* CheckoutViewController.swift */,
+				6EE2D8981E569AB500FC6514 /* CheckoutRowView.swift */,
+				6EE2D89A1E569AE600FC6514 /* Button.swift */,
+			);
+			name = Checkout;
+			sourceTree = "<group>";
+		};
 		945EFC66C51C2FCC9D247CD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,10 +477,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E962C3A1E4BF19E00BE803B /* MainPageDatasource.swift in Sources */,
+				6EE2D8991E569AB500FC6514 /* CheckoutRowView.swift in Sources */,
 				6E4A819F1E231150004F3BC5 /* JSONRepresentable.swift in Sources */,
 				6E4A819B1E231150004F3BC5 /* JSON+Equatable.swift in Sources */,
 				6E4A819E1E231150004F3BC5 /* JSON+Serialize.swift in Sources */,
 				6EA46C521DC7F4AD00F57E8A /* Subscription.swift in Sources */,
+				6EE2D89B1E569AE600FC6514 /* Button.swift in Sources */,
 				6EA46C5B1DC7F4AD00F57E8A /* FeaturedBox.swift in Sources */,
 				6E90758A1E4AB83800452C0F /* CategoryTableViewCell.swift in Sources */,
 				6EA46C501DC7F4AD00F57E8A /* Customer.swift in Sources */,
@@ -472,6 +491,7 @@
 				6EA46C551DC7F4AD00F57E8A /* Review.swift in Sources */,
 				6E4A819D1E231150004F3BC5 /* JSON+Parse.swift in Sources */,
 				6E72DA2F1E4F8A9500684C4C /* StripeVaporBackendAdapter.swift in Sources */,
+				6EE2D8971E5681F000FC6514 /* CheckoutViewController.swift in Sources */,
 				6EA46C2A1DC7EF8800F57E8A /* AppDelegate.swift in Sources */,
 				6E9075851E4AB56800452C0F /* Categories.swift in Sources */,
 				6E18EC4A1E23E4AC00D93A7B /* Moya+Realm.swift in Sources */,

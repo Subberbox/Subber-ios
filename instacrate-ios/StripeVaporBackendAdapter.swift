@@ -53,8 +53,12 @@ extension DataRequest {
 final class StripeVaporBackendAdapter: NSObject, STPBackendAPIAdapter {
     
     func retrieveCustomer(_ completion: @escaping STPCustomerCompletionBlock) {
-        Alamofire.request("http://api.instacrate.me/customers?type[]=stripe").nativeResponseJSON { response in
-            guard let stripeData = response.result.value?["stripe"] else {
+        Alamofire.request("http://api.instacrate.me/customers/", parameters: ["type[]": "stripe"]).responseJSON { response in
+            guard let value = response.result.value as? NSDictionary else {
+                return
+            }
+            
+            guard let stripeData = value["stripe"] else {
                 fatalError("No stripe field from our server.")
             }
             
@@ -75,6 +79,8 @@ final class StripeVaporBackendAdapter: NSObject, STPBackendAPIAdapter {
     }
     
     func selectDefaultCustomerSource(_ source: STPSource, completion: @escaping STPErrorBlock) {
-        Alamofire.request
+        Alamofire.request("http://api.instacrate.me/customers/sources/default/\(source.stripeID)", method: .post).nativeResponseJSON { response in
+            completion(response.result.error)
+        }
     }
 }
