@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2016 Alexander Grebenyuk (github.com/kean).
+// Copyright (c) 2017 Alexander Grebenyuk (github.com/kean).
 
 import Foundation
 
@@ -62,9 +62,12 @@ public struct AnyProcessor: Processing {
     /// Decompresses and (optionally) scales down input images. Maintains
     /// original aspect ratio.
     ///
-    /// Images are decompressed and scaled in a single pass which is extremely
-    /// efficient when scaling images down by a large factor.
+    /// Decompressing compressed image formats (such as JPEG) can significantly
+    /// improve drawing performance as it allows a bitmap representation to be
+    /// created in the background rather than on the main thread.
     public struct Decompressor: Processing {
+        
+        /// An option for how to resize the image.
         public enum ContentMode {
             /// Scales the image so that it completely fills the target size.
             /// Doesn't clip images.
@@ -98,6 +101,16 @@ public struct AnyProcessor: Processing {
         public static func ==(lhs: Decompressor, rhs: Decompressor) -> Bool {
             return lhs.targetSize == rhs.targetSize && lhs.contentMode == rhs.contentMode
         }
+
+        #if !os(watchOS)
+        /// Returns target size in pixels for the given view. Takes main screen
+        /// scale into the account.
+        public static func targetSize(for view: UIView) -> CGSize { // in pixels
+            let scale = UIScreen.main.scale
+            let size = view.bounds.size
+            return CGSize(width: size.width * scale, height: size.height * scale)
+        }
+        #endif
     }
     
     private func decompress(_ image: UIImage, targetSize: CGSize, contentMode: Decompressor.ContentMode) -> UIImage {
@@ -112,8 +125,7 @@ public struct AnyProcessor: Processing {
     private func decompress(_ image: UIImage, scale: CGFloat) -> UIImage {
         guard let cgImage = image.cgImage else { return image }
 
-        let size = CGSize(width: round(scale * CGFloat(cgImage.width)),
-                          height: round(scale * CGFloat(cgImage.height)))
+        let size = CGSize(width: round(scale * CGFloat(cgImage.width)), height: round(scale * CGFloat(cgImage.height)))
         
         // For more info see:
         // - Quartz 2D Programming Guide

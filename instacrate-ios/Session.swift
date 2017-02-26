@@ -33,7 +33,7 @@ enum SessionType: Int {
     }
 }
 
-final class Session: BaseObject {
+final class Session: Object, ObjectNodeInitializable {
     
     dynamic var id = 0
     dynamic var exists = false
@@ -56,14 +56,12 @@ final class Session: BaseObject {
             return try SessionType(from: type)
         }) ?? .none
     }
-
-    override func link(with objects: [BaseObject]) {
-        if let customer_id = customer_id {
-            customer = objects.find(primaryKey: customer_id)
-        }
-    }
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }

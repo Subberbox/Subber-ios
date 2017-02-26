@@ -66,7 +66,11 @@ class MainPageTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let box = dataSource.object(for: indexPath)
-        let boxViewController = BoxViewController(boxPrimaryKey: box.id)
+        
+        guard let boxViewController = BoxViewController(box: box.id) else {
+            return
+        }
+        
         self.navigationController?.pushViewController(boxViewController, animated: true)
     }
 }

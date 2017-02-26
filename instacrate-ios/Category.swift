@@ -10,7 +10,7 @@ import Foundation
 import Node
 import RealmSwift
 
-final class Category: BaseObject {
+final class Category: Object, ObjectNodeInitializable {
     
     dynamic var id = 0
     dynamic var name = ""
@@ -24,7 +24,7 @@ final class Category: BaseObject {
         name = try node.extract("name")
     }
 
-    override func makeNode(context: Context) throws -> Node {
+    func makeNode(context: Context) throws -> Node {
         return try Node(node: [
             "id" : .number(.int(id)),
             "name" : .string(name)
@@ -33,5 +33,9 @@ final class Category: BaseObject {
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }

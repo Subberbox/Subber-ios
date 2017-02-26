@@ -12,9 +12,6 @@ import NukeAlamofirePlugin
 import Stripe
 import Alamofire
 
-let loader = Nuke.Loader(loader: NukeAlamofirePlugin.DataLoader(), decoder: Nuke.DataDecoder(), cache: Cache.shared)
-let nuke = Nuke.Manager(loader: loader, cache: Cache.shared)
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

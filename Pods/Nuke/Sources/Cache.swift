@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2016 Alexander Grebenyuk (github.com/kean).
+// Copyright (c) 2017 Alexander Grebenyuk (github.com/kean).
 
 import Foundation
 #if os(macOS)
@@ -19,7 +19,7 @@ public protocol Caching: class {
 
 public extension Caching {
     /// Accesses the image associated with the given request.
-    subscript(request: Request) -> Image? {
+    public subscript(request: Request) -> Image? {
         get { return self[Request.cacheKey(for: request)] }
         set { self[Request.cacheKey(for: request)] = newValue }
     }
@@ -45,11 +45,8 @@ public final class Cache: Caching {
     /// The total number of items in the cache.
     public var totalCount: Int { return map.count }
     
-    deinit {
-        #if os(iOS) || os(tvOS)
-            NotificationCenter.default.removeObserver(self)
-        #endif
-    }
+    /// Shared `Cache` instance.
+    public static let shared = Cache()
     
     /// Initializes `Cache`.
     /// - parameter costLimit: Default value is calculated based on the amount
@@ -60,6 +57,12 @@ public final class Cache: Caching {
         #if os(iOS) || os(tvOS)
             NotificationCenter.default.addObserver(self, selector: #selector(Cache.removeAll), name: .UIApplicationDidReceiveMemoryWarning, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(Cache.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        #endif
+    }
+    
+    deinit {
+        #if os(iOS) || os(tvOS)
+            NotificationCenter.default.removeObserver(self)
         #endif
     }
     

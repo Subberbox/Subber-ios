@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2016 Alexander Grebenyuk (github.com/kean).
+// Copyright (c) 2017 Alexander Grebenyuk (github.com/kean).
 
 import Foundation
 
@@ -12,18 +12,21 @@ public final class CancellationTokenSource {
     private var observers = [(Void) -> Void]()
     private let lock: Lock
     
+    /// Creates a new token associated with the source.
     public var token: CancellationToken {
         return CancellationToken(source: self)
     }
-    
+
+    /// Initializes the `CancellationTokenSource` instance.
     public init() {
         self.lock = Lock()
     }
     
-    // Allows to create cts with a shared mutex to avoid excessive allocations.
-    // This optimization gives you small wins in absolute numbers. It's also
-    // tricky to get right thus `internal` access modifier.
-    internal init(lock: Lock) { self.lock = lock }
+    /// Allows to create cts with a shared lock to avoid excessive allocations.
+    /// This is tricky to use thus `internal` access modifier.
+    internal init(lock: Lock) {
+        self.lock = lock
+    }
     internal static let lock = Lock()
     
     fileprivate func register(_ closure: @escaping (Void) -> Void) {

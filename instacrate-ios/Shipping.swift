@@ -10,7 +10,7 @@ import Foundation
 import Node
 import RealmSwift
 
-final class Shipping: BaseObject {
+final class Shipping: Object, ObjectNodeInitializable {
     
     dynamic var id = 0
 
@@ -46,14 +46,12 @@ final class Shipping: BaseObject {
         isDefault = (try? node.extract("isDefault")) ?? false
         apartment = (try? node.extract("apartment")) ?? ""
     }
-
-    override func link(with objects: [BaseObject]) {
-        if let customer_id = customer_id {
-            customer = objects.find(primaryKey: customer_id)
-        }
-    }
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }

@@ -10,9 +10,20 @@ import UIKit
 import RealmSwift
 import Nuke
 
+extension Object {
+    
+    static func fetch<T: Object>(with primaryKey: Int) -> T? {
+        guard let object = try? Realm().object(ofType: T.self, forPrimaryKey: primaryKey) else {
+            return nil
+        }
+        
+        return object
+    }
+}
+
 class BoxViewController: UIViewController {
 
-    let boxPrimaryKey: Int
+    let box: Box
 
     @IBOutlet weak var boxImageView: UIImageView!
     
@@ -31,8 +42,13 @@ class BoxViewController: UIViewController {
     @IBOutlet weak var oneTimeView: UIView!
     @IBOutlet weak var subscribeView: UIView!
 
-    init(boxPrimaryKey: Int) {
-        self.boxPrimaryKey = boxPrimaryKey
+    init?(box primaryKey: Int) {
+        
+        guard let box: Box = Box.fetch(with: primaryKey) else {
+            return nil
+        }
+        
+        self.box = box
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -91,18 +107,13 @@ class BoxViewController: UIViewController {
         borderLayer3.lineWidth = 1
         borderLayer3.frame = addToCartButton.bounds
         addToCartButton.layer.addSublayer(borderLayer3)
-
-        if let _box = try? Realm().object(ofType: Box.self, forPrimaryKey: boxPrimaryKey), let box = _box {
-            updateView(with: box)
-        }
     }
 
     @IBAction func didPressBuyButton(_ sender: Any) {
-        guard let _box = try? Realm().object(ofType: Box.self, forPrimaryKey: boxPrimaryKey), let box = _box else {
+        guard let checkout = CheckoutViewController(boxKey: box.id, oneTime: false) else {
             return
         }
         
-        let checkout = CheckoutViewController(product: box.name, price: Int(box.price * 100))
         self.navigationController?.pushViewController(checkout, animated: true)
     }
     

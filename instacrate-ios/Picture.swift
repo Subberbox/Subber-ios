@@ -10,7 +10,7 @@ import Foundation
 import Node
 import RealmSwift
 
-final class Picture: BaseObject {
+final class Picture: Object, ObjectNodeInitializable {
     
     dynamic var id = 0
     dynamic var url = ""
@@ -28,7 +28,7 @@ final class Picture: BaseObject {
         box_id = try node.extract("box_id")
     }
 
-    override func makeNode(context: Context) throws -> Node {
+    func makeNode(context: Context) throws -> Node {
         return try Node(node: [
             "id" : .number(.int(id)),
             "url" : .string(url),
@@ -36,13 +36,11 @@ final class Picture: BaseObject {
         ])
     }
 
-    override func link(with objects: [BaseObject]) {
-        if let box_id = box_id {
-            box = objects.find(primaryKey: box_id)
-        }
-    }
-
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }

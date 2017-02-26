@@ -4,15 +4,14 @@ source 'https://github.com/instacrate/specs.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'instacrate-ios' do
+    pod 'RealmSwift'
+    
 	pod 'Node'
-
     pod 'Jay'
 
-    pod 'RealmSwift', '~> 2.0'
     pod 'Stripe'
+    pod 'Moya'
     
-    pod 'Moya', '8.0.0-beta.3'
-    
-    pod 'Nuke', '~> 4.0'
+    pod 'Nuke'
     pod 'Nuke-Alamofire-Plugin'
 end

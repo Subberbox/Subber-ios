@@ -68,22 +68,7 @@ internal extension Node {
 
 protocol Linkable {
 
-    func link(with objects: [BaseObject])
-}
-
-class BaseObject: Object, NodeConvertible, Linkable {
-
-    required convenience init(node: Node, in context: Context = EmptyNode) throws {
-        self.init()
-    }
-
-    func makeNode(context: Context = EmptyNode) throws -> Node {
-        return try Node(node: [])
-    }
-
-    func link(with objects: [BaseObject]) {
-        
-    }
+    func link(with objects: [Object])
 }
 
 protocol ResponseTargetType: TargetType {
@@ -95,10 +80,15 @@ protocol ResponseTargetType: TargetType {
 
 indirect enum ResponseType {
     
-    case object(BaseObject.Type)
+    case object(ObjectNodeInitializable.Type)
     
     case array(ResponseType)
     case tuple(ResponseType, [String : ResponseType])
+}
+
+protocol ObjectNodeInitializable: NodeInitializable {
+    
+    func realmObject() -> Object
 }
 
 extension Node {
@@ -109,13 +99,13 @@ extension Node {
     }
 }
 
-func parse(node: Node, from endpoint: ResponseTargetType) throws -> [BaseObject] {
+func parse(node: Node, from endpoint: ResponseTargetType) throws -> [ObjectNodeInitializable] {
     return try parse(node: node, from: endpoint.responseType)
 }
 
-fileprivate func parse(node: Node, from endpoint: ResponseType) throws -> [BaseObject] {
+fileprivate func parse(node: Node, from endpoint: ResponseType) throws -> [ObjectNodeInitializable] {
     
-    var results: [BaseObject] = []
+    var results: [ObjectNodeInitializable] = []
     
     switch endpoint {
     case let .object(type):
@@ -124,7 +114,7 @@ fileprivate func parse(node: Node, from endpoint: ResponseType) throws -> [BaseO
     case let .tuple(primary, secondary):
         try results.append(contentsOf: parse(node: node, from: primary))
 
-        try results.append(contentsOf: secondary.flatMap { (tuple) -> [BaseObject] in
+        try results.append(contentsOf: secondary.flatMap { (tuple) -> [ObjectNodeInitializable] in
             guard let subnode = node[tuple.key] else {
                 throw ParseError.notFound(message: "Failed trying to instantiate \(tuple.value). \(tuple.key) not found on node with \(try! node.prettyPrint())")
             }
@@ -136,7 +126,7 @@ fileprivate func parse(node: Node, from endpoint: ResponseType) throws -> [BaseO
             throw GenericError()
         }
 
-        try results.append(contentsOf: subnodes.flatMap { subnode -> [BaseObject] in
+        try results.append(contentsOf: subnodes.flatMap { subnode -> [ObjectNodeInitializable] in
             return try parse(node: subnode, from: type)
         })
     }

@@ -55,7 +55,7 @@ enum Frequency: Int {
     }
 }
 
-final class Subscription: BaseObject {
+final class Subscription: Object, ObjectNodeInitializable {
     
     dynamic var id = 0
 
@@ -96,22 +96,12 @@ final class Subscription: BaseObject {
 
         sub_id = (try? node.extract("sub_id")) ?? ""
     }
-
-    override func link(with objects: [BaseObject]) {
-        if let box_id = box_id {
-            box = objects.find(primaryKey: box_id)
-        }
-
-        if let shipping_id = shipping_id {
-            address = objects.find(primaryKey: shipping_id)
-        }
-
-        if let customer_id = customer_id {
-            customer = objects.find(primaryKey: customer_id)
-        }
-    }
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }

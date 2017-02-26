@@ -36,7 +36,7 @@ enum ApplicationState: Int {
     }
 }
 
-final class Vendor: BaseObject {
+final class Vendor: Object, ObjectNodeInitializable {
     
     dynamic var id: Int = 0
 
@@ -102,15 +102,12 @@ final class Vendor: BaseObject {
         stripeAccountId = try? node.extract("stripeAccountId")
 //        verificationState = try? node.extract("verificationState")
     }
-
-    override func link(with objects: [BaseObject]) {
-
-        if let category_id = category_id {
-            category = objects.find(primaryKey: category_id)
-        }
-    }
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }

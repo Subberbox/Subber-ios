@@ -10,9 +10,9 @@ import Foundation
 import Node
 import RealmSwift
 
-extension Sequence where Iterator.Element : BaseObject {
+extension Sequence where Iterator.Element : Object {
 
-    func find<T: BaseObject>(primaryKey: Int) -> T? {
+    func find<T: Object>(primaryKey: Int) -> T? {
         for object in self {
             guard let object = object as? T else {
                 continue
@@ -31,7 +31,7 @@ extension Sequence where Iterator.Element : BaseObject {
     }
 }
 
-final class Customer: BaseObject {
+final class Customer: Object, ObjectNodeInitializable {
     
     dynamic var id: Int = 0
     
@@ -46,7 +46,7 @@ final class Customer: BaseObject {
     let sessions = LinkingObjects(fromType: Session.self, property: "customer")
     let addresses = LinkingObjects(fromType: Shipping.self, property: "customer")
 
-    convenience required init(node: Node, in context: Context) throws {
+    convenience init(node: Node, in context: Context) throws {
         self.init()
 
         id = try node.extract("id")
@@ -56,22 +56,11 @@ final class Customer: BaseObject {
         defaultShippingId = try? node.extract("default_shipping")
     }
 
-    override func makeNode(context: Context) throws -> Node {
-        return try Node(node: [
-            "name" : .string(name),
-            "email" : .string(email),
-            "id" : .number(.int(id))
-            ]).add(objects: ["stripe_id" : stripe_id,
-                             "default_shipping" : defaultShipping?.makeNode()])
-    }
-
-    override func link(with objects: [BaseObject]) {
-        if let defaultShippingId = defaultShippingId {
-            defaultShipping = objects.find(primaryKey: defaultShippingId)
-        }
-    }
-
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }

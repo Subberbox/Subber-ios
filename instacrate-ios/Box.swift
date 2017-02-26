@@ -10,7 +10,7 @@ import Foundation
 import Node
 import RealmSwift
 
-final class Box: BaseObject {
+final class Box: Object, ObjectNodeInitializable {
 
     static let boxBulletSeparator = "<<<>>>"
     
@@ -26,6 +26,7 @@ final class Box: BaseObject {
     dynamic var publish_date = Date()
     dynamic var plan_id: String?
     dynamic var type: String?
+    dynamic var vendor_id = 0
     
     dynamic var curatedRaw = Curated.all.rawValue
     
@@ -40,19 +41,20 @@ final class Box: BaseObject {
     }
     
     let categories = List<Category>()
-    dynamic var vendor: Vendor? = nil
+    
+    lazy var vendor: Vendor? = { [unowned self] in
+        return Vendor.fetch(with: self.vendor_id)
+    }()
     
     let pictures = LinkingObjects(fromType: Picture.self, property: "box")
     let reviews = LinkingObjects(fromType: Review.self, property: "box")
     let subscriptions = LinkingObjects(fromType: Subscription.self, property: "box")
 
-    var vendor_id: Int?
-
     func splitBullets() -> [String] {
         return bullets.components(separatedBy: "<<<>>>")
     }
     
-    convenience required init(node: Node, in context: Context) throws {
+    convenience init(node: Node, in context: Context) throws {
         self.init()
         
         id = try node.extract("id")
@@ -74,7 +76,7 @@ final class Box: BaseObject {
         type = try? node.extract("type")
     }
 
-    override func makeNode(context: Context) throws -> Node {
+    func makeNode(context: Context) throws -> Node {
         return try Node(node: [
             "int" : .number(.int(id)),
             "name" : .string(name),
@@ -83,21 +85,19 @@ final class Box: BaseObject {
             "short_desc" : .string(short_desc),
             "bullets" : .string(bullets),
             "price" : .number(.double(price)),
-            "vendor_id" : .number(.int(vendor_id!)),
+            "vendor_id" : .number(.int(vendor_id)),
             "publish_date" : .string(publish_date.ISO8601String),
         ]).add(objects: [
             "plan_id" : plan_id,
             "type" : type
         ])
     }
-
-    override func link(with objects: [BaseObject]) {
-        if let vendor_id = vendor_id {
-            vendor = objects.find(primaryKey: vendor_id)
-        }
-    }
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }

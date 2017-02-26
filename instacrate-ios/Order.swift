@@ -10,7 +10,7 @@ import Foundation
 import Node
 import RealmSwift
 
-final class Order: BaseObject {
+final class Order: Object, ObjectNodeInitializable {
     
     dynamic var id = 0
     
@@ -41,7 +41,7 @@ final class Order: BaseObject {
         vendor_id = try node.extract("vendor_id")
     }
 
-    override func makeNode(context: Context) throws -> Node {
+    func makeNode(context: Context) throws -> Node {
         return try Node(node: [
             "id" : .number(.int(id)),
             "date" : .string(date.ISO8601String),
@@ -51,22 +51,12 @@ final class Order: BaseObject {
             "vendor_id" : .number(.int(vendor_id!))
         ])
     }
-
-    override func link(with objects: [BaseObject]) {
-        if let subscription_id = subscription_id {
-            subscription = objects.find(primaryKey: subscription_id)
-        }
-
-        if let shipping_id = shipping_id {
-            address = objects.find(primaryKey: shipping_id)
-        }
-
-        if let vendor_id = vendor_id {
-            vendor = objects.find(primaryKey: vendor_id)
-        }
-    }
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func realmObject() -> Object {
+        return self
     }
 }
