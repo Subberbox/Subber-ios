@@ -120,7 +120,7 @@ class BoxViewController: UIViewController {
     func updateView(with box: Box) {
 
         if let string = box.pictures.first?.url, let url = URL(string: string) {
-            nuke.loadImage(with: url, into: boxImageView)
+            Nuke.loadImage(with: url, into: boxImageView)
         }
 
         titleLabel.text = box.name

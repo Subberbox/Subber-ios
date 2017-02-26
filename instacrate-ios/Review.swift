@@ -21,8 +21,8 @@ final class Review: Object, ObjectNodeInitializable {
     dynamic var box: Box? = nil
     dynamic var customer: Customer? = nil
 
-    var box_id: Int?
-    var customer_id: Int?
+    dynamic var box_id: Int = 0
+    dynamic var customer_id: Int = 0
 
     convenience required init(node: Node, in context: Context) throws {
         self.init()
@@ -32,12 +32,12 @@ final class Review: Object, ObjectNodeInitializable {
         text = try node.extract("text")
         rating = try node.extract("rating")
 
-        box_id = try? node.extract("box_id")
-
-        customer_id = try? node.extract("customer_id")
-
-        if let customerNode = node["customer"] {
-            customer_id = try? customerNode.extract("id")
+        box_id = try node.extract("box_id")
+        
+        if let id = node["customer_id"], let cust_id = id.int {
+            customer_id = cust_id
+        } else if let customerNode = node["customer"] {
+            customer_id = try customerNode.extract("id")
         }
 
         date = (try? node.extract("date") { (dateString: String) in

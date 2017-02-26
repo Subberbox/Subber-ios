@@ -64,7 +64,7 @@ final class Vendor: Object, ObjectNodeInitializable {
 
     var stripeAccountId: String?
     
-    let boxes = LinkingObjects(fromType: Box.self, property: "vendor")
+//    let boxes = LinkingObjects(fromType: Box.self, property: "vendor")
 
     var category_id: Int?
 

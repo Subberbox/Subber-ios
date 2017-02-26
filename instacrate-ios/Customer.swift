@@ -42,9 +42,9 @@ final class Customer: Object, ObjectNodeInitializable {
 
     var defaultShippingId: Int?
     
-    let reviews = LinkingObjects(fromType: Review.self, property: "customer")
-    let sessions = LinkingObjects(fromType: Session.self, property: "customer")
-    let addresses = LinkingObjects(fromType: Shipping.self, property: "customer")
+//    let reviews = LinkingObjects(fromType: Review.self, property: "customer")
+//    let sessions = LinkingObjects(fromType: Session.self, property: "customer")
+//    let addresses = LinkingObjects(fromType: Shipping.self, property: "customer")
 
     convenience init(node: Node, in context: Context) throws {
         self.init()

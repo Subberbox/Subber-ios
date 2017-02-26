@@ -35,6 +35,10 @@ extension Categories: ResponseTargetType {
         return nil
     }
     
+    var parameterEncoding: ParameterEncoding {
+        return URLEncoding.default
+    }
+    
     var task: Task {
         return .request
     }

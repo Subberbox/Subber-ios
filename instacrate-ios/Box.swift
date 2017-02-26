@@ -46,9 +46,23 @@ final class Box: Object, ObjectNodeInitializable {
         return Vendor.fetch(with: self.vendor_id)
     }()
     
-    let pictures = LinkingObjects(fromType: Picture.self, property: "box")
-    let reviews = LinkingObjects(fromType: Review.self, property: "box")
-    let subscriptions = LinkingObjects(fromType: Subscription.self, property: "box")
+//    let pictures = LinkingObjects(fromType: Picture.self, property: "box")
+//    let reviews = LinkingObjects(fromType: Review.self, property: "box")
+//    let subscriptions = LinkingObjects(fromType: Subscription.self, property: "box")
+    
+    var reviews: Results<Review> {
+        get {
+            let realm = try! Realm()
+            return realm.objects(Review.self).filter("box_id = %@", id)
+        }
+    }
+    
+    var pictures: Results<Picture> {
+        get {
+            let realm = try! Realm()
+            return realm.objects(Picture.self).filter("box_id = %@", id)
+        }
+    }
 
     func splitBullets() -> [String] {
         return bullets.components(separatedBy: "<<<>>>")
@@ -95,6 +109,10 @@ final class Box: Object, ObjectNodeInitializable {
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    override class func ignoredProperties() -> [String] {
+        return ["vendor"]
     }
     
     func realmObject() -> Object {

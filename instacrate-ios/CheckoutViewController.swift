@@ -21,8 +21,11 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     let paymentContext: STPPaymentContext
     
     @IBOutlet weak var productTitleLabel: UILabel!
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    @IBOutlet weak var cardImageView: UIImageView!
+    @IBOutlet weak var paymentDescriptionLabel: UILabel!
+    @IBOutlet weak var addressDescriptionLabel: UILabel!
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let numberFormatter: NumberFormatter
     
     var paymentInProgress: Bool = false {
@@ -39,7 +42,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             }, completion: nil)
         }
     }
-    
+
     init?(boxKey: Int, oneTime: Bool) {
         guard let box: Box = Box.fetch(with: boxKey) else {
             return nil
@@ -78,6 +81,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         
         self.paymentContext.delegate = self
         paymentContext.hostViewController = self
+        
+        self.title = "Checkout"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -86,8 +91,16 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.title = "Emoji Apparel"
+        
+        self.cardImageView.image = STPImageLibrary.unknownCardCardImage()
+    }
+    
+    @IBAction func didTapUpdatePaymentMethod(_ sender: Any) {
+        paymentContext.pushPaymentMethodsViewController()
+    }
+    
+    @IBAction func didTapUpdateShippingMethod(_ sender: Any) {
+        paymentContext.pushShippingViewController()
     }
     
     func didTapBuy() {
@@ -97,15 +110,22 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // MARK: STPPaymentContextDelegate
     
+    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+        if let selectedPaymentMethod = paymentContext.selectedPaymentMethod {
+            self.cardImageView.image = selectedPaymentMethod.image
+            self.paymentDescriptionLabel.text = selectedPaymentMethod.label
+        }
+        
+        if let selectedShippingAddress = paymentContext.shippingAddress {
+            self.addressDescriptionLabel.text = selectedShippingAddress.line1
+        }
+    }
+    
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
         
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
-        
-    }
-    
-    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
         
     }
     

@@ -89,6 +89,10 @@ extension Boxes: ResponseTargetType {
         }
     }
     
+    var parameterEncoding: ParameterEncoding {
+        return URLEncoding.default
+    }
+    
     public var task: Task {
         return .request
     }

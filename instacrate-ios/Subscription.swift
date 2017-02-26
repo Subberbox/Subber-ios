@@ -73,7 +73,7 @@ final class Subscription: Object, ObjectNodeInitializable {
     var shipping_id: Int?
     var customer_id: Int?
 
-    let orders = LinkingObjects(fromType: Order.self, property: "subscription")
+//    let orders = LinkingObjects(fromType: Order.self, property: "subscription")
 
     convenience required init(node: Node, in context: Context) throws {
         self.init()

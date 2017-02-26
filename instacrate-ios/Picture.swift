@@ -13,11 +13,10 @@ import RealmSwift
 final class Picture: Object, ObjectNodeInitializable {
     
     dynamic var id = 0
-    dynamic var url = ""
     
+    dynamic var url = ""
     dynamic var box: Box? = nil
-
-    var box_id: Int?
+    dynamic var box_id: Int = 0
     
     convenience required init(node: Node, in context: Context = EmptyNode) throws {
         self.init()
@@ -26,14 +25,6 @@ final class Picture: Object, ObjectNodeInitializable {
 
         url = try node.extract("url")
         box_id = try node.extract("box_id")
-    }
-
-    func makeNode(context: Context) throws -> Node {
-        return try Node(node: [
-            "id" : .number(.int(id)),
-            "url" : .string(url),
-            "box_id" : .number(.int(box_id!))
-        ])
     }
 
     override class func primaryKey() -> String? {

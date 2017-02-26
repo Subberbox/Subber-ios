@@ -9,7 +9,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutViewController" customModule="instacrate_ios" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutViewController" customModule="instacrate_ios" customModuleProvider="target">
+            <connections>
+                <outlet property="addressDescriptionLabel" destination="X9L-uZ-kTg" id="zhY-tC-7k0"/>
+                <outlet property="cardImageView" destination="xJc-G3-9bm" id="yPn-g6-fYQ"/>
+                <outlet property="paymentDescriptionLabel" destination="BJF-bc-5mu" id="0XJ-uW-fb6"/>
+                <outlet property="productTitleLabel" destination="Ruc-lK-PWQ" id="iYv-kE-yuX"/>
+                <outlet property="view" destination="k6i-cB-Ljx" id="7v3-Hf-1Nr"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="k6i-cB-Ljx">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -35,6 +43,7 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="xJc-G3-9bm" firstAttribute="leading" secondItem="juR-Nl-nHd" secondAttribute="leading" constant="20" symbolic="YES" id="33X-bm-5Z4"/>
                         <constraint firstItem="BJF-bc-5mu" firstAttribute="leading" secondItem="xJc-G3-9bm" secondAttribute="trailing" constant="8" symbolic="YES" id="Acf-rI-3Q8"/>
@@ -42,6 +51,9 @@
                         <constraint firstItem="BJF-bc-5mu" firstAttribute="centerY" secondItem="juR-Nl-nHd" secondAttribute="centerY" id="Qxy-Dn-153"/>
                         <constraint firstAttribute="height" constant="64" id="gQB-7C-9DC"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="1Ke-V5-j65" appends="YES" id="qQF-hP-xBy"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWZ-Zl-krD" userLabel="Shipping">
                     <rect key="frame" x="0.0" y="165" width="375" height="64"/>
@@ -57,6 +69,7 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="X9L-uZ-kTg" firstAttribute="leading" secondItem="g7D-DF-iRh" secondAttribute="trailing" constant="8" symbolic="YES" id="5Px-gn-3AV"/>
                         <constraint firstItem="X9L-uZ-kTg" firstAttribute="centerY" secondItem="lWZ-Zl-krD" secondAttribute="centerY" id="7xv-FK-bAT"/>
@@ -64,6 +77,9 @@
                         <constraint firstItem="g7D-DF-iRh" firstAttribute="centerY" secondItem="lWZ-Zl-krD" secondAttribute="centerY" id="UJr-Kr-kBc"/>
                         <constraint firstItem="g7D-DF-iRh" firstAttribute="leading" secondItem="lWZ-Zl-krD" secondAttribute="leading" constant="20" symbolic="YES" id="yQ1-5w-D9l"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="biA-NY-pLb" appends="YES" id="tIe-d3-DBB"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,8 +93,18 @@
                 <constraint firstItem="lWZ-Zl-krD" firstAttribute="leading" secondItem="k6i-cB-Ljx" secondAttribute="leading" id="tGC-KZ-4yM"/>
                 <constraint firstItem="juR-Nl-nHd" firstAttribute="top" secondItem="Ruc-lK-PWQ" secondAttribute="bottom" constant="8" id="vwJ-cP-bRn"/>
             </constraints>
-            <point key="canvasLocation" x="4.5" y="-4.5"/>
+            <point key="canvasLocation" x="103" y="5"/>
         </view>
+        <tapGestureRecognizer id="1Ke-V5-j65">
+            <connections>
+                <action selector="didTapUpdatePaymentMethod:" destination="-1" id="Kfu-Ub-KXd"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="biA-NY-pLb">
+            <connections>
+                <action selector="didTapUpdateShippingMethod:" destination="-1" id="BBu-oh-iUu"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="card" width="25" height="25"/>

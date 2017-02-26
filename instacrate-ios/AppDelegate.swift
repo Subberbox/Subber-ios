@@ -22,8 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         STPPaymentConfiguration.shared().publishableKey = "pk_test_8CLhJ9ky8vCfyVwFm2CZfXdc"
         
-        window = UIWindow()
-        window?.rootViewController = MainTabBarController()
+        let controller = MainTabBarController(nibName: nil, bundle: nil)
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = controller
         window?.makeKeyAndVisible()
         
         // Hardcode login for now

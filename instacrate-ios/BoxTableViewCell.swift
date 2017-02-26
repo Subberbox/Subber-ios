@@ -28,7 +28,7 @@ class BoxTableViewCell: UITableViewCell {
         ratingLabel.text = String(format: "%.1f", rating ?? 4.2)
         
         if let string = box.pictures.first?.url, let url = URL(string: string) {
-            nuke.loadImage(with: url, into: boxImageView)
+            Nuke.loadImage(with: url, into: boxImageView)
         }
     }
 }
