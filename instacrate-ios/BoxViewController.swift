@@ -110,11 +110,12 @@ class BoxViewController: UIViewController {
     }
 
     @IBAction func didPressBuyButton(_ sender: Any) {
-        guard let checkout = CheckoutViewController(boxKey: box.id, oneTime: false) else {
-            return
-        }
+        let checkoutViewController = CheckoutViewController.instance()
         
-        self.navigationController?.pushViewController(checkout, animated: true)
+        checkoutViewController.box = self.box
+        checkoutViewController.oneTime = false
+        
+        self.navigationController?.pushViewController(checkoutViewController, animated: true)
     }
     
     func updateView(with box: Box) {

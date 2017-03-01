@@ -9,14 +9,30 @@
 import Foundation
 import Stripe
 import Alamofire
+import AvePurchaseButton
+import Static
+import PromiseKit
+import Moya
 
-class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
+class CheckoutViewController: UITableViewController, STPPaymentContextDelegate {
+    
+    let shipping = MoyaProvider<Shippings>()
+    let subscription = MoyaProvider<Subscriptions>()
+    
+    static func instance() -> CheckoutViewController {
+        let storyboard = UIStoryboard(name: "CheckoutViewController", bundle: nil)
+        return storyboard.instantiateInitialViewController() as! CheckoutViewController
+    }
 
     // These values will be shown to the user when they purchase with Apple Pay.
     let companyName = "Instacrate"
     let paymentCurrency = "usd"
     
-    let box: Box
+    var box: Box!
+    var oneTime: Bool!
+    
+    @IBOutlet weak var checkoutButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let paymentContext: STPPaymentContext
     
@@ -25,31 +41,51 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     @IBOutlet weak var paymentDescriptionLabel: UILabel!
     @IBOutlet weak var addressDescriptionLabel: UILabel!
     
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    let numberFormatter: NumberFormatter
+    var shippingAddressPromise: Promise<Response>?
+    
+    var paymentValid = false
+    var addressValid = false {
+        didSet {
+            if !oldValue && addressValid {
+                guard let address = paymentContext.shippingAddress else {
+                    addressValid = false
+                    return
+                }
+                
+                shippingAddressPromise = Promise { fulfill, reject in
+                
+                    shipping.request(.create(address: address)) { result in
+                        switch result {
+                        case let .success(response):
+                            fulfill(response)
+                            
+                        case let .failure(error):
+                            reject(error)
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     var paymentInProgress: Bool = false {
         didSet {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
                 if self.paymentInProgress {
+                    self.checkoutButton.alpha = 0
                     self.activityIndicator.startAnimating()
                     self.activityIndicator.alpha = 1
                 }
                 else {
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.alpha = 0
+                    self.checkoutButton.alpha = 1
                 }
             }, completion: nil)
         }
     }
-
-    init?(boxKey: Int, oneTime: Bool) {
-        guard let box: Box = Box.fetch(with: boxKey) else {
-            return nil
-        }
-        
-        self.box = box
-        
+    
+    required init?(coder aDecoder: NSCoder) {
         assert(STPPaymentConfiguration.shared().publishableKey.hasPrefix("pk_"), "You must set your Stripe publishable key at the top of CheckoutViewController.swift to run this app.")
         
         // This code is included here for the sake of readability, but in your application you should set up your configuration and theme earlier, preferably in your App Delegate.
@@ -60,33 +96,14 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         config.shippingType = .shipping
         
         let paymentContext = STPPaymentContext(apiAdapter: StripeVaporBackendAdapter(), configuration: config, theme: STPTheme.default())
-        
-
         paymentContext.paymentCurrency = self.paymentCurrency
         
         self.paymentContext = paymentContext
         
-        var localeComponents: [String: String] = [NSLocale.Key.currencyCode.rawValue: self.paymentCurrency]
-        localeComponents[NSLocale.Key.languageCode.rawValue] = NSLocale.preferredLanguages.first
-        
-        let localeID = NSLocale.localeIdentifier(fromComponents: localeComponents)
-        let numberFormatter = NumberFormatter()
-        numberFormatter.locale = Locale(identifier: localeID)
-        numberFormatter.numberStyle = .currency
-        numberFormatter.usesGroupingSeparator = true
-        
-        self.numberFormatter = numberFormatter
-        
-        super.init(nibName: nil, bundle: nil)
+        super.init(coder: aDecoder)
         
         self.paymentContext.delegate = self
         paymentContext.hostViewController = self
-        
-        self.title = "Checkout"
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -103,7 +120,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         paymentContext.pushShippingViewController()
     }
     
-    func didTapBuy() {
+    @IBAction func startPurchase(_ sender: Any) {
         self.paymentInProgress = true
         self.paymentContext.requestPayment()
     }
@@ -111,25 +128,34 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     // MARK: STPPaymentContextDelegate
     
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+        
         if let selectedPaymentMethod = paymentContext.selectedPaymentMethod {
             self.cardImageView.image = selectedPaymentMethod.image
             self.paymentDescriptionLabel.text = selectedPaymentMethod.label
+            paymentValid = true
         }
         
-        if let selectedShippingAddress = paymentContext.shippingAddress {
+        if let selectedShippingAddress = paymentContext.shippingAddress, selectedShippingAddress.containsRequiredFields(.full) {
             self.addressDescriptionLabel.text = selectedShippingAddress.line1
+            addressValid = true
         }
+        
+        checkoutButton.isEnabled = addressValid && paymentValid
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
+        shippingAddressPromise!.then { response in
+            let box_id = box.id
+            let shipping_id =z
+            return subscription.promised(.create())
+        }
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Swift.Error?) {
         
     }
     
-    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
-        
-    }
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
+    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Swift.Error) {
         let alertController = UIAlertController(
             title: "Error",
             message: error.localizedDescription,
@@ -151,9 +177,4 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didUpdateShippingAddress address: STPAddress, completion: @escaping STPShippingMethodsCompletionBlock) {
-        
-    }
-    
 }

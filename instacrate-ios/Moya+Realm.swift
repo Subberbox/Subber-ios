@@ -8,8 +8,9 @@
 
 import Foundation
 import Moya
-import Result
 import RealmSwift
+import PromiseKit
+import Alamofire
 
 extension Realm {
     
@@ -18,6 +19,24 @@ extension Realm {
         
         try! realm.write {
             block(realm)
+        }
+    }
+}
+
+extension MoyaProvider {
+    
+    func promised(_ endpoint: TargetType) -> Promise<Response> {
+        return Promise { fulfill, reject in
+            
+            self.request(endpoint) {
+                switch $0 {
+                case let .success(response):
+                    fulfill(response)
+                    
+                case let .failure(error):
+                    reject(error)
+                }
+            }
         }
     }
 }

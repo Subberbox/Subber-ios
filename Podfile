@@ -14,4 +14,9 @@ target 'instacrate-ios' do
     
     pod 'Nuke'
     pod 'Nuke-Alamofire-Plugin'
+    
+    pod 'AvePurchaseButton'
+    pod 'Static'
+    pod 'KVOController'
+    pod 'PromiseKit'
 end
